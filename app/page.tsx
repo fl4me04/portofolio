@@ -1,65 +1,80 @@
-import Image from "next/image";
+import StarBackground from "@/components/StarBackground";
+import TypewriterText from "@/components/TypewriterText";
+import BentoGrid from "@/components/BentoGrid";
+import Link from "next/link";
+import { ArrowRight, Mail } from "lucide-react";
+import Projects from "@/components/Projects";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer"; // Jangan lupa import Footer (kalau sudah buat)
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="relative flex min-h-screen flex-col items-center overflow-x-hidden bg-black">
+      {/* Background */}
+      <div className="absolute inset-0 z-0 fixed">
+        <StarBackground />
+      </div>
+
+      {/* --- HERO SECTION --- */}
+      <section
+        id="home"
+        className="z-10 flex flex-col items-center text-center max-w-4xl mx-auto pt-32 md:pt-40 pb-20 px-4 min-h-dvh justify-center"
+      >
+        <div className="mb-4">
+          <TypewriterText />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+          I&apos;m{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+            Fl4me
+          </span>
+        </h2>
+
+        <p className="text-gray-400 text-base md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto px-2">
+          Full Stack Engineer specializing in scalable web applications.{" "}
+          <br className="hidden md:block" />I focus on{" "}
+          <span className="text-blue-400 font-medium">performance</span>,{" "}
+          <span className="text-purple-400 font-medium">clean code</span>, and{" "}
+          <span className="text-pink-400 font-medium">user experience</span>.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
+          <Link
+            href="#projects"
+            className="group relative px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_25px_rgba(124,58,237,0.6)] hover:scale-105 flex items-center justify-center gap-2 active:scale-95"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            View Projects
+            <ArrowRight
+              size={18}
+              className="group-hover:translate-x-1 transition-transform"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </Link>
+
+          <Link
+            href="#contact"
+            className="px-8 py-3 rounded-full border border-gray-700 text-gray-300 font-medium transition-all duration-300 hover:border-blue-500 hover:text-blue-400 hover:bg-blue-500/10 flex items-center justify-center gap-2"
           >
-            Documentation
-          </a>
+            Contact Me
+            <Mail size={18} />
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* --- BENTO GRID SECTION --- */}
+      <div className="z-10 w-full bg-gradient-to-b from-transparent via-black/80 to-black border-t border-white/10 backdrop-blur-sm">
+        <BentoGrid />
+      </div>
+
+      {/* --- PROJECTS SECTION --- */}
+      <div className="z-10 w-full bg-black border-t border-white/5">
+        <Projects />
+      </div>
+
+      {/* --- CONTACT SECTION --- */}
+      <div className="z-10 w-full bg-gradient-to-b from-black to-black/80 border-t border-white/5">
+        <Contact />
+      </div>
+    </main>
   );
 }
