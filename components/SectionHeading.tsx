@@ -16,7 +16,7 @@ const SectionHeading = ({
       <span className="h-px flex-1 bg-line" />
     </div>
     {intro && (
-      <p className="mx-auto mt-4 max-w-xl text-center leading-relaxed text-ink-muted md:mx-0 md:text-left">
+      <p className="mt-4 max-w-xl leading-relaxed text-ink-muted">
         {intro}
       </p>
     )}

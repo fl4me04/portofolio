@@ -68,12 +68,12 @@ const ProjectCard = ({
       </div>
 
       <div
-        className={`flex flex-col items-center text-center md:col-span-6 md:items-start md:text-left ${
+        className={`flex flex-col items-start text-left md:col-span-6 ${
           isEven ? "md:items-end md:text-right" : ""
         }`}
       >
         <div
-          className={`mb-3 flex items-center justify-center gap-3 text-xs tracking-widest text-ink-faint uppercase md:justify-start ${
+          className={`mb-3 flex items-center gap-3 text-xs tracking-widest text-ink-faint uppercase ${
             isEven ? "md:flex-row-reverse" : ""
           }`}
         >
@@ -113,7 +113,7 @@ const ProjectCard = ({
         </div>
 
         <div
-          className={`mt-6 flex w-full flex-wrap justify-center gap-2 md:justify-start ${
+          className={`mt-6 flex w-full flex-wrap gap-2 ${
             isEven ? "md:justify-end" : ""
           }`}
         >
@@ -158,7 +158,7 @@ const Projects = () => {
       <span id="projects" aria-hidden className="block scroll-mt-24" />
       <SectionHeading
         title="Selected work"
-        intro="Three projects, described with the engineering problems they presented rather than a list of features."
+        intro="Three projects built with small teams — what each one set out to solve, and the part that took me longest to get right."
       />
 
       <div className="flex flex-col">
@@ -167,7 +167,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <div className="mt-16 flex justify-center md:justify-start">
+      <div className="mt-16 flex">
         <Link
           href={me.socials.github}
           target="_blank"
