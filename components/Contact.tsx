@@ -48,9 +48,9 @@ const Contact = () => {
 
   return (
     <section
-      id="contact"
-      className="relative z-20 mx-auto max-w-6xl scroll-mt-20 px-5 py-20 md:px-8 md:py-28"
+      className="relative z-20 mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28"
     >
+      <span id="contact" aria-hidden className="block scroll-mt-24" />
       <SectionHeading title="Get in touch" />
 
       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">

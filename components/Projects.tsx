@@ -167,9 +167,9 @@ const ProjectCard = ({
 const Projects = () => {
   return (
     <section
-      id="projects"
-      className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 md:px-8 md:py-28"
+      className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28"
     >
+      <span id="projects" aria-hidden className="block scroll-mt-24" />
       <SectionHeading
         title="Selected work"
         intro="Three projects, described with the engineering problems they presented rather than a list of features."

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { me } from "@/content/me";
-import LocalTime from "./LocalTime";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -15,11 +14,11 @@ const navLinks = [
 
 /**
  * A docked toolbar: full-bleed, flush to the top edge, sticky rather than
- * floating in from the margins. Three zones — status on the left, section
- * links in the middle, direct contact on the right.
+ * floating in from the margins. Centred section links, with direct
+ * contact links on the right.
  *
- * Height is fixed at 3.5rem so `scroll-mt-20` on each section clears it
- * on an anchor jump.
+ * Height is fixed at 3.5rem; each section's anchor marker carries a
+ * matching scroll margin so a jump clears the bar.
  */
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("Home");
@@ -52,24 +51,11 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 h-14 w-full border-b border-line bg-bg/85 backdrop-blur-md">
-      <div className="mx-auto flex h-full max-w-6xl items-center justify-center gap-4 px-4 sm:justify-between md:px-8">
-        {/* Availability. The most useful thing a visiting recruiter can
-            learn in the first second, so it goes first. */}
-        <div className="hidden items-center gap-2.5 md:flex">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-warm opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-warm" />
-          </span>
-          <span className="text-xs text-ink-muted">
-            Open to opportunities
-          </span>
-          <span className="text-xs text-ink-faint">·</span>
-          <span className="text-xs">
-            <LocalTime />
-          </span>
-        </div>
-
-        <nav aria-label="Primary" className="md:absolute md:left-1/2 md:-translate-x-1/2">
+      <div className="relative mx-auto flex h-full max-w-6xl items-center justify-center gap-4 px-4 sm:justify-end md:px-8">
+        <nav
+          aria-label="Primary"
+          className="sm:absolute sm:left-1/2 sm:-translate-x-1/2"
+        >
           <ul className="flex items-center gap-0.5 sm:gap-1">
             {navLinks.map((link) => {
               const isLinkActive = activeSection === link.name;

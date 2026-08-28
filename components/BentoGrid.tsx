@@ -41,9 +41,9 @@ const socials = [
 const BentoGrid = () => {
   return (
     <section
-      id="about"
-      className="mx-auto max-w-6xl scroll-mt-20 px-5 py-20 md:px-8 md:py-28"
+      className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28"
     >
+      <span id="about" aria-hidden className="block scroll-mt-24" />
       <SectionHeading title="About" />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
