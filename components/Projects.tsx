@@ -61,10 +61,10 @@ const ProjectCard = ({
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group relative mb-24 grid grid-cols-1 items-center gap-8 last:mb-0 md:mb-32 md:grid-cols-12 md:gap-12"
+      className="group relative mb-24 grid grid-cols-1 items-center gap-8 last:mb-0 md:mb-32 md:grid-cols-12 md:gap-8"
     >
       <div
-        className={`relative overflow-hidden rounded-2xl border border-line md:col-span-7 ${
+        className={`relative overflow-hidden rounded-2xl border border-line md:col-span-6 ${
           !isEven ? "md:order-last" : ""
         }`}
       >
@@ -72,12 +72,12 @@ const ProjectCard = ({
       </div>
 
       <div
-        className={`flex flex-col items-start text-left md:col-span-5 ${
+        className={`flex flex-col items-start text-left md:col-span-6 ${
           isEven ? "md:items-end md:text-right" : ""
         }`}
       >
         <div
-          className={`mb-3 flex items-center gap-3 text-xs tracking-wide text-ink-faint ${
+          className={`mb-3 flex items-center gap-3 text-xs tracking-widest text-ink-faint uppercase ${
             isEven ? "md:flex-row-reverse" : ""
           }`}
         >
@@ -86,40 +86,32 @@ const ProjectCard = ({
           <span>{statusLabel[project.status]}</span>
         </div>
 
-        <h3 className="font-display text-xl text-ink md:text-2xl">
+        <h3 className="font-display text-xl leading-tight text-ink md:text-2xl">
           {project.title}
         </h3>
         <p className="mt-2 mb-6 text-sm text-ink-muted">{project.role}</p>
 
         <div
           className={`w-full rounded-2xl border border-line bg-surface p-6 backdrop-blur-md ${
-            isEven ? "md:-ml-12" : "md:-mr-12"
+            isEven ? "md:-ml-8" : "md:-mr-8"
           } z-20 space-y-4`}
         >
-          <p className="text-sm leading-relaxed text-ink-muted md:text-base">
-            {project.problem}
-          </p>
-          <p className="text-sm leading-relaxed text-ink-muted md:text-base">
-            {project.build}
-          </p>
+          <p className="leading-relaxed text-ink-muted">{project.problem}</p>
+          <p className="leading-relaxed text-ink-muted">{project.build}</p>
 
           <div className="border-t border-line pt-4">
-            <p className="mb-1 text-xs tracking-wide text-warm">
-              Key challenge
+            <p className="mb-2 text-xs tracking-widest text-warm uppercase">
+              Challenge
             </p>
-            <p className="text-sm leading-relaxed text-ink-muted">
-              {project.hardPart}
-            </p>
+            <p className="leading-relaxed text-ink-muted">{project.hardPart}</p>
           </div>
 
           {project.wouldChange && (
             <div className="border-t border-line pt-4">
-              <p className="mb-1 text-xs tracking-wide text-warm">
-                What I would approach differently
+              <p className="mb-2 text-xs tracking-widest text-warm uppercase">
+                In hindsight
               </p>
-              <p className="text-sm leading-relaxed text-ink-muted">
-                {project.wouldChange}
-              </p>
+              <p className="leading-relaxed text-ink-muted">{project.wouldChange}</p>
             </div>
           )}
         </div>

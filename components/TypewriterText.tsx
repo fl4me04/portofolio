@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 // Kept, but demoted. This used to be the biggest thing on the page at
 // 7xl; a rotating greeting is a nice touch, not a headline.
 const greetings = [
-  "Hello",
-  "Halo",
-  "Hai",
-  "Bonjour",
-  "Hola",
-  "Ciao",
-  "こんにちは",
-  "안녕하세요",
+  "Hello!",
+  "Halo!",
+  "Hai!",
+  "Bonjour!",
+  "Hola!",
+  "Ciao!",
+  "こんにちは!",
+  "안녕하세요!",
 ];
 
 const TYPE_MS = 70;
@@ -58,7 +58,11 @@ const TypewriterText = () => {
   }, [text, isDeleting, index, reduceMotion]);
 
   if (reduceMotion) {
-    return <p className="flex h-7 items-center text-lg text-ink-muted md:text-xl">Hello</p>;
+    return (
+      <p className="flex h-7 items-center text-lg text-ink-muted md:text-xl">
+        Hello!
+      </p>
+    );
   }
 
   return (
@@ -68,7 +72,7 @@ const TypewriterText = () => {
     // emptied, so the whole page shifted up on every delete cycle.
     <p
       className="flex h-7 items-center text-lg text-ink-muted md:text-xl"
-      aria-label="Hello"
+      aria-label="Hello!"
     >
       <span aria-hidden>{text}</span>
       <motion.span

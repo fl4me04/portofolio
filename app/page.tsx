@@ -29,7 +29,7 @@ export default function Home() {
         >
           <TypewriterText />
 
-          <h1 className="mt-4 font-display text-5xl leading-[1.05] text-ink md:text-7xl">
+          <h1 className="mt-4 font-display text-5xl leading-[1.05] tracking-tight text-ink md:text-7xl">
             {me.name}
             <span className="text-warm">.</span>
           </h1>
@@ -40,7 +40,7 @@ export default function Home() {
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
             {me.hook}
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-ink-faint">
+          <p className="mt-4 max-w-xl leading-relaxed text-ink-faint">
             {me.hookSub}
           </p>
 

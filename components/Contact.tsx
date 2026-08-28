@@ -60,7 +60,7 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h3 className="font-display text-xl text-ink md:text-2xl">
+          <h3 className="font-display text-xl leading-tight text-ink md:text-2xl">
             Open to new opportunities
           </h3>
           <p className="mt-4 max-w-md leading-relaxed text-ink-muted">
@@ -81,7 +81,7 @@ const Contact = () => {
               <Mail size={20} />
             </span>
             <span className="flex-1">
-              <span className="block text-xs text-ink-faint">
+              <span className="block text-xs tracking-widest text-ink-faint uppercase">
                 Email
               </span>
               <span className="mt-1 block break-all text-ink">{me.email}</span>

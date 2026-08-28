@@ -22,7 +22,7 @@ const Footer = () => {
             <span className="text-warm">.</span>
           </p>
           <p className="mt-1 text-sm text-ink-faint">{me.role}</p>
-          <p className="mt-3 max-w-xs leading-relaxed text-ink-muted">
+          <p className="mt-3 max-w-sm leading-relaxed text-ink-muted">
             {me.signOff}
           </p>
         </div>

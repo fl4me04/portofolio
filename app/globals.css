@@ -4,15 +4,25 @@
    DESIGN SYSTEM
 
    Type roles (font-display for headings, Inter for everything else):
-     h1  display     text-5xl / md:text-7xl
-     h2  section     text-2xl / md:text-3xl
-     h3  subsection  text-xl  / md:text-2xl
-     lead            text-lg  / md:text-xl   (hero) or text-base/md:text-lg
-     body            text-base
+     h1  display     text-5xl / md:text-7xl, leading 1.05, tracking-tight
+     h2  section     text-2xl / md:text-3xl, leading-tight
+     h3  subsection  text-xl  / md:text-2xl, leading-tight
+     lead            text-lg  / md:text-xl   (hero)
+                     text-base/ md:text-lg   (section prose)
+     body            text-base, leading-relaxed
      secondary       text-sm
-     meta, eyebrow   text-xs tracking-wide text-ink-faint
+     kicker          text-sm tracking-wide text-ink-faint (hero only)
+     label           text-xs tracking-widest uppercase
+
    Headings carry no weight class: the serif supplies the contrast, so
-   nothing on the page overrides font-weight.
+   nothing on the page overrides font-weight. Large display type is
+   tracked in, small labels are tracked out — the two ends of the scale
+   need opposite treatment to read evenly.
+
+   Measure: prose is held to roughly 60-75 characters per line. That is
+   what max-w-xl / max-w-2xl are doing on the hero, and why the project
+   cards are a 6/6 split rather than 7/5 — at 7/5 the text column ran to
+   44 characters, which breaks the line too often to read comfortably.
 
    Radii:  rounded-full pills and buttons
            rounded-2xl  cards and panels

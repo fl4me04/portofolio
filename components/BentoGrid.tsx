@@ -78,7 +78,7 @@ const BentoGrid = () => {
           className="flex flex-col gap-4 md:gap-6"
         >
           <Card className="flex flex-1 flex-col justify-center p-6 md:p-8">
-            <p className="mb-2 text-xs tracking-wide text-ink-faint">
+            <p className="mb-2 text-xs tracking-widest text-ink-faint uppercase">
               Based in
             </p>
             <p className="font-display text-xl text-ink">
@@ -94,7 +94,7 @@ const BentoGrid = () => {
           </Card>
 
           <Card className="p-6 md:p-8">
-            <p className="mb-4 text-xs tracking-wide text-ink-faint">
+            <p className="mb-4 text-xs tracking-widest text-ink-faint uppercase">
               Elsewhere
             </p>
             <div className="flex gap-3">
@@ -124,7 +124,9 @@ const BentoGrid = () => {
       >
         <Card className="p-6 md:p-8">
           <div className="mb-6 flex flex-wrap items-baseline gap-3">
-            <h3 className="font-display text-xl text-ink md:text-2xl">Currently</h3>
+            <h3 className="font-display text-xl leading-tight text-ink md:text-2xl">
+              Currently
+            </h3>
             <span className="text-xs text-ink-faint">
               updated {me.now.updated}
             </span>
@@ -153,7 +155,7 @@ const BentoGrid = () => {
       >
         {Object.entries(stack).map(([label, items]) => (
           <Card key={label} className="p-6 md:p-8">
-            <p className="mb-4 text-xs tracking-wide text-ink-faint">{label}</p>
+            <p className="mb-4 text-xs tracking-widest text-ink-faint uppercase">{label}</p>
             <ul className="space-y-2">
               {items.map((item) => (
                 <li key={item} className="text-sm text-ink-muted">
