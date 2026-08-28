@@ -82,8 +82,7 @@ export const projects: Project[] = [
       "TODO: what you would architect differently with what you know now. Optional, but it demonstrates judgement better than any feature list.",
     tags: ["Java", "MVC", "MySQL", "JDBC", "OOP"],
     links: { repo: "https://github.com/fl4me04/JoymarKet" },
-    // TODO: drop a real screenshot in /public and point `image` at it.
-    // Until then this card renders a typographic panel — the old value
-    // here was a stock Unsplash photo of someone else's shop.
+    image: "/JoyMarket.png",
+    imageAlt: "The JoymarKet point-of-sale screen during a transaction.",
   },
 ];

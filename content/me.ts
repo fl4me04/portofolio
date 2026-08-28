@@ -23,6 +23,9 @@ export const me = {
 
   email: "fl4mes04@gmail.com",
 
+  avatar: "/Profile.jpeg",
+  avatarAlt: "Shem Josh Lowell",
+
   socials: {
     github: "https://github.com/fl4me04",
     linkedin: "https://id.linkedin.com/in/shemjl",

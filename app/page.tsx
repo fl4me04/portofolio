@@ -4,6 +4,7 @@ import BentoGrid from "@/components/BentoGrid";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import SectionLink from "@/components/SectionLink";
+import Image from "next/image";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { me } from "@/content/me";
 
@@ -25,44 +26,62 @@ export default function Home() {
             visible underneath, which says 'keep scrolling'. */}
         <section
           id="home"
-          className="mx-auto flex min-h-[82vh] w-full max-w-6xl scroll-mt-14 flex-col justify-center px-6 py-24 md:px-10 md:py-32"
+          className="mx-auto grid min-h-[82vh] w-full max-w-6xl scroll-mt-14 grid-cols-1 content-center items-center gap-10 px-6 py-24 md:grid-cols-12 md:gap-12 md:px-10 md:py-32"
         >
-          <TypewriterText />
-
-          <h1 className="mt-4 font-display text-5xl leading-[1.05] tracking-tight text-ink md:text-7xl">
-            I&apos;m {me.name}
-            <span className="text-warm">.</span>
-          </h1>
-          <p className="mt-4 text-sm tracking-wide text-ink-faint">
-            {me.role} &middot; {me.location.city}, {me.location.country}
-          </p>
-
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
-            {me.hook}
-          </p>
-          <p className="mt-4 max-w-xl leading-relaxed text-ink-faint">
-            {me.hookSub}
-          </p>
-
-          <div className="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <SectionLink
-              id="projects"
-              className="group inline-flex h-12 items-center gap-2 rounded-full border border-line px-6 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
-            >
-              View selected work
-              <ArrowDown
-                size={16}
-                className="transition-transform group-hover:translate-y-0.5"
+          {/* First in the DOM so it leads on a phone, moved to the right
+              on wider screens. The source is square, so it needs no
+              cropping decision. */}
+          <div className="md:order-last md:col-span-4">
+            <div className="relative aspect-square w-36 overflow-hidden rounded-2xl border border-line sm:w-44 md:w-full">
+              <Image
+                src={me.avatar}
+                alt={me.avatarAlt}
+                fill
+                sizes="(max-width: 768px) 176px, 340px"
+                className="object-cover"
+                priority
               />
-            </SectionLink>
+            </div>
+          </div>
 
-            <SectionLink
-              id="contact"
-              className="inline-flex h-12 items-center gap-2 rounded-full border border-transparent px-6 text-sm text-ink-muted transition-colors hover:text-ink"
-            >
-              Get in touch
-              <ArrowUpRight size={16} className="opacity-60" />
-            </SectionLink>
+          <div className="md:col-span-8">
+            <TypewriterText />
+
+            <h1 className="mt-4 font-display text-5xl leading-[1.05] tracking-tight text-ink md:text-7xl">
+              I&apos;m {me.name}
+              <span className="text-warm">.</span>
+            </h1>
+            <p className="mt-4 text-sm tracking-wide text-ink-faint">
+              {me.role} &middot; {me.location.city}, {me.location.country}
+            </p>
+
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
+              {me.hook}
+            </p>
+            <p className="mt-4 max-w-xl leading-relaxed text-ink-faint">
+              {me.hookSub}
+            </p>
+
+            <div className="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <SectionLink
+                id="projects"
+                className="group inline-flex h-12 items-center gap-2 rounded-full border border-line px-6 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+              >
+                View selected work
+                <ArrowDown
+                  size={16}
+                  className="transition-transform group-hover:translate-y-0.5"
+                />
+              </SectionLink>
+
+              <SectionLink
+                id="contact"
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-transparent px-6 text-sm text-ink-muted transition-colors hover:text-ink"
+              >
+                Get in touch
+                <ArrowUpRight size={16} className="opacity-60" />
+              </SectionLink>
+            </div>
           </div>
         </section>
 
