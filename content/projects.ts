@@ -1,82 +1,66 @@
-/**
- * Projects, restructured as stories rather than feature lists.
- *
- * `problem` / `hardPart` / `wouldChange` are the fields visitors
- * actually remember — a feature list tells them what the app does,
- * these tell them how you think. TODOs are the ones I can't write.
- */
-
 export type Project = {
   title: string;
   year: string;
   role: string;
   status: "live" | "archived" | "in progress";
-  /** Why this exists at all. One sentence. */
   problem: string;
-  /** What you actually built. */
   build: string;
-  /** The part that fought back. This is the one people remember. */
   hardPart: string;
-  /** Optional: what you'd do differently now. Honesty reads as skill. */
   wouldChange?: string;
   tags: string[];
   links: {
     demo?: string;
     repo: string;
   };
-  /** Omit when you have no real screenshot yet — the card falls back to
-   *  a typographic panel. A stock photo of someone else's shop is worse
-   *  than no photo at all. */
   image?: string;
   imageAlt?: string;
 };
 
 export const projects: Project[] = [
   {
-    title: "Xperimall",
-    year: "TODO",
-    role: "TODO",
-    status: "archived",
+    title: "Martian",
+    year: "2026",
+    role: "Team of 6 - Working on AR Robot Placed & Assembly Part Features",
+    status: "live",
     problem:
-      "TODO: the problem this addresses — what makes navigating a large mall difficult enough to warrant an app?",
+      "Students need more interactive ways to learn beyond reading textbooks or watching videos. At the same time, color sensors are relatively unfamiliar despite being used in many technologies people encounter every day, such as automatic sorting systems, manufacturing machines, and robotics.",
     build:
-      "A mobile directory for mall visitors, comprising an interactive tenant guide, promotional alerts and an itinerary planner for structuring a visit in advance.",
-    hardPart: "TODO",
-    tags: ["React Native", "TypeScript", "MySQL"],
-    links: { repo: "https://github.com/fl4me04/xperimall" },
-    image: "/Xperimall.jpg",
-    imageAlt:
-      "The Xperimall app showing the interactive mall tenant directory.",
+      "Martian is an AR-based learning application that uses a game-based approach to help children explore and understand color sensors, from their individual components to how they work in real-world applications.",
+    hardPart:
+      "Understanding how augmented reality could be meaningfully implemented in a real-world learning experience and translating those concepts into an interactive AR application.",
+    tags: ["Swift", "SwiftUI", "UIKit"],
+    links: { repo: "https://github.com/fl4me04/Martian" },
+    image: "/Martian.png",
+    imageAlt: "The Martian's keynote.",
   },
   {
-    title: "JoymarKet",
-    year: "TODO",
-    role: "TODO",
+    title: "Scouters",
+    year: "2026",
+    role: "Team of 6 - Working on Live Location Tracking",
     status: "archived",
     problem:
-      "TODO: the context this was built for — coursework, a real retailer, or your own initiative. Stating it plainly is better than leaving it ambiguous.",
+      "Parents want to give their children the freedom to explore and become independent, but that freedom often comes with uncertainty about their safety and well-being. Scouters addresses this gap by helping parents stay informed and connected without taking away their child’s independence.",
     build:
-      "A desktop retail management system in Java, built on a strict MVC split, with transactional logic, MySQL persistence via JDBC, and real session handling.",
+      "Scouters is a child safety and location awareness app that helps parents stay connected with their children through location tracking, meeting points, quick check-ins with Nudge, geofencing, and contextual safety insights. It is designed to provide greater peace of mind for parents while giving children the freedom to explore independently.",
     hardPart:
-      "TODO: the hardest part to get right — transactional integrity, enforcing the MVC boundaries, or the desktop UI layer.",
-    wouldChange:
-      "TODO: what you would architect differently with what you know now. Optional, but it demonstrates judgement better than any feature list.",
-    tags: ["Java", "MVC", "MySQL", "JDBC", "OOP"],
-    links: { repo: "https://github.com/fl4me04/JoymarKet" },
-    image: "/JoyMarket.png",
-    imageAlt: "The JoymarKet point-of-sale screen during a transaction.",
+      "Understanding how location tracking works within Apple’s ecosystem and synchronizing real-time location data reliably across multiple devices.",
+    tags: ["Swift", "SwiftUI", "UIKit", "Firebase"],
+    links: { repo: "https://github.com/storyofhis/challenge-4" },
+    image: "/Scouters.png",
+    imageAlt:
+      "The Scouters app showing live location track from the child, to parents.",
   },
   {
     title: "BeOkay",
-    year: "TODO",
-    role: "TODO: solo? team of how many? which parts were yours?",
-    status: "live",
+    year: "2025",
+    role: "Team of 5 - Working on Landing Page, Role-based Dashboard & Localization",
+    status: "archived",
     problem:
-      "TODO: the problem this addresses — what gap in access to mental health support made it worth building?",
+      "BeOkay was built to address the gap between people who need mental health support and their ability to access it, providing a more approachable and accessible space to begin seeking help.",
     build:
       "An online counseling platform connecting users with licensed psychologists for virtual therapy sessions, with booking, session management and a public-facing awareness component.",
     hardPart:
-      "TODO: the engineering problem that took the longest to solve — session scheduling, data privacy for counseling records, or something else.",
+      "Designing a reliable session scheduling system that could handle availability, appointments, and scheduling conflicts while keeping the experience simple for both users and counselors.",
     tags: ["Laravel", "PHP", "Blade", "MySQL", "Tailwind CSS"],
     links: {
       demo: "https://www.beokay.my.id/",
