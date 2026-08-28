@@ -60,7 +60,7 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h3 className="font-display text-2xl text-ink md:text-3xl">
+          <h3 className="font-display text-xl text-ink md:text-2xl">
             Open to new opportunities
           </h3>
           <p className="mt-4 max-w-md leading-relaxed text-ink-muted">
@@ -75,7 +75,7 @@ const Contact = () => {
           <button
             type="button"
             onClick={handleCopyEmail}
-            className="group mt-8 flex w-full items-center gap-4 rounded-2xl border border-line bg-white/[0.03] p-6 text-left transition-colors hover:border-accent/40"
+            className="group mt-8 flex w-full items-center gap-4 rounded-2xl border border-line bg-surface p-6 text-left transition-colors hover:border-accent"
           >
             <span className="rounded-full border border-line p-3 text-accent">
               <Mail size={20} />
@@ -88,9 +88,9 @@ const Contact = () => {
             </span>
             <span className="text-ink-faint transition-colors group-hover:text-ink">
               {copied ? (
-                <CheckCircle size={18} className="text-warm" />
+                <CheckCircle size={16} className="text-warm" />
               ) : (
-                <Copy size={18} />
+                <Copy size={16} />
               )}
             </span>
           </button>
@@ -104,7 +104,7 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-3xl border border-line bg-white/[0.03] p-6 backdrop-blur-xl md:p-8"
+          className="rounded-2xl border border-line bg-surface p-6 backdrop-blur-xl md:p-8"
         >
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
@@ -118,7 +118,7 @@ const Contact = () => {
                 value={formState.name}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border border-line bg-black/40 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
+                className="w-full rounded-xl border border-line bg-field px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
                 placeholder="Your name"
               />
             </div>
@@ -134,7 +134,7 @@ const Contact = () => {
                 value={formState.email}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border border-line bg-black/40 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
+                className="w-full rounded-xl border border-line bg-field px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
                 placeholder="you@company.com"
               />
             </div>
@@ -150,7 +150,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full resize-none rounded-xl border border-line bg-black/40 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
+                className="w-full resize-none rounded-xl border border-line bg-field px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
                 placeholder="A little about the role, project or question."
               />
             </div>
@@ -158,9 +158,9 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting || isSent}
-              className={`w-full rounded-xl border py-3.5 font-medium transition-colors ${
+              className={`flex h-12 w-full items-center justify-center rounded-xl border text-sm transition-colors ${
                 isSent
-                  ? "border-warm/40 text-warm"
+                  ? "border-warm text-warm"
                   : "border-line text-ink hover:border-accent hover:text-accent"
               }`}
             >

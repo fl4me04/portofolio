@@ -74,7 +74,7 @@ export default function Navbar() {
                     id={link.href.replace("#", "")}
                     aria-current={isLinkActive ? "true" : undefined}
                     onNavigate={() => setActiveSection(link.name)}
-                    className={`block rounded-full px-2 py-1.5 text-[13px] transition-colors sm:px-3 sm:text-sm ${
+                    className={`block rounded-full px-2 py-1.5 text-sm transition-colors sm:px-3 ${
                       isLinkActive
                         ? "text-ink"
                         : "text-ink-faint hover:text-ink-muted"

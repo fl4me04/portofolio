@@ -17,7 +17,7 @@ const Footer = () => {
     <footer className="relative z-20 w-full border-t border-line bg-bg pt-20 pb-12">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 md:flex-row md:items-end md:justify-between md:px-10">
         <div>
-          <p className="font-display text-2xl text-ink">
+          <p className="font-display text-xl text-ink">
             {me.name}
             <span className="text-warm">.</span>
           </p>

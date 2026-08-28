@@ -15,7 +15,7 @@ const Card = ({
   className?: string;
 }) => (
   <div
-    className={`relative overflow-hidden rounded-3xl border border-line bg-white/[0.03] ${className}`}
+    className={`relative overflow-hidden rounded-2xl border border-line bg-surface ${className}`}
   >
     {children}
   </div>
@@ -60,7 +60,7 @@ const BentoGrid = () => {
               {me.about.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="leading-relaxed text-ink-muted md:text-lg"
+                  className="text-base leading-relaxed text-ink-muted md:text-lg"
                 >
                   {paragraph}
                 </p>
@@ -81,7 +81,7 @@ const BentoGrid = () => {
             <p className="mb-2 text-xs tracking-wide text-ink-faint">
               Based in
             </p>
-            <p className="font-display text-2xl text-ink">
+            <p className="font-display text-xl text-ink">
               {me.location.city}
             </p>
             <p className="mt-1 text-sm text-ink-muted">
@@ -124,7 +124,7 @@ const BentoGrid = () => {
       >
         <Card className="p-6 md:p-8">
           <div className="mb-6 flex flex-wrap items-baseline gap-3">
-            <h3 className="font-display text-2xl text-ink">Currently</h3>
+            <h3 className="font-display text-xl text-ink md:text-2xl">Currently</h3>
             <span className="text-xs text-ink-faint">
               updated {me.now.updated}
             </span>
@@ -135,7 +135,7 @@ const BentoGrid = () => {
                 key={item}
                 className="flex gap-3 leading-relaxed text-ink-muted"
               >
-                <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-warm/70" />
+                <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-warm" />
                 {item}
               </li>
             ))}

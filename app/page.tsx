@@ -51,7 +51,7 @@ export default function Home() {
             >
               View selected work
               <ArrowDown
-                size={15}
+                size={16}
                 className="transition-transform group-hover:translate-y-0.5"
               />
             </SectionLink>
@@ -61,7 +61,7 @@ export default function Home() {
               className="inline-flex h-12 items-center gap-2 rounded-full border border-transparent px-6 text-sm text-ink-muted transition-colors hover:text-ink"
             >
               Get in touch
-              <ArrowUpRight size={15} className="opacity-60" />
+              <ArrowUpRight size={16} className="opacity-60" />
             </SectionLink>
           </div>
         </section>

@@ -82,17 +82,17 @@ const ProjectCard = ({
           }`}
         >
           <span>{project.year}</span>
-          <span className="h-1 w-1 rounded-full bg-ink-faint/60" />
+          <span className="h-1 w-1 rounded-full bg-ink-faint" />
           <span>{statusLabel[project.status]}</span>
         </div>
 
-        <h3 className="font-display text-3xl text-ink md:text-4xl">
+        <h3 className="font-display text-xl text-ink md:text-2xl">
           {project.title}
         </h3>
         <p className="mt-2 mb-6 text-sm text-ink-muted">{project.role}</p>
 
         <div
-          className={`w-full rounded-2xl border border-line bg-white/[0.03] p-6 backdrop-blur-md ${
+          className={`w-full rounded-2xl border border-line bg-surface p-6 backdrop-blur-md ${
             isEven ? "md:-ml-12" : "md:-mr-12"
           } z-20 space-y-4`}
         >
@@ -104,7 +104,7 @@ const ProjectCard = ({
           </p>
 
           <div className="border-t border-line pt-4">
-            <p className="mb-1 text-xs tracking-wide text-warm/80">
+            <p className="mb-1 text-xs tracking-wide text-warm">
               Key challenge
             </p>
             <p className="text-sm leading-relaxed text-ink-muted">
@@ -114,7 +114,7 @@ const ProjectCard = ({
 
           {project.wouldChange && (
             <div className="border-t border-line pt-4">
-              <p className="mb-1 text-xs tracking-wide text-warm/80">
+              <p className="mb-1 text-xs tracking-wide text-warm">
                 What I would approach differently
               </p>
               <p className="text-sm leading-relaxed text-ink-muted">
