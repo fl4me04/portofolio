@@ -27,7 +27,7 @@ const stack = {
 
 const BentoGrid = () => {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20 text-center md:px-10 md:py-32 md:text-left">
+    <section className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-32">
       <span id="about" aria-hidden className="block scroll-mt-24" />
 
       <SectionHeading title="About" />
@@ -61,7 +61,7 @@ const BentoGrid = () => {
           transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
           <Card className="flex h-full flex-col p-6 md:p-8">
-            <div className="mb-6 flex flex-wrap items-baseline justify-center gap-3 md:justify-start">
+            <div className="mb-6 flex flex-wrap items-baseline gap-3">
               <h3 className="font-display text-xl leading-tight text-ink md:text-2xl">
                 Currently
               </h3>
@@ -73,11 +73,9 @@ const BentoGrid = () => {
               {me.now.items.map((item) => (
                 <li
                   key={item}
-                  className="flex justify-center gap-3 leading-relaxed text-ink-muted md:justify-start"
+                  className="flex gap-3 leading-relaxed text-ink-muted"
                 >
-                  {/* The bullet is dropped on a phone: a marker in front of a
-                      centred, wrapping line reads as a misalignment. */}
-                  <span className="mt-2.5 hidden h-1 w-1 shrink-0 rounded-full bg-warm md:block" />
+                  <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-warm" />
                   {item}
                 </li>
               ))}
