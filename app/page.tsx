@@ -29,7 +29,8 @@ export default function Home() {
           <span className="text-warm">.</span>
         </h1>
         <p className="mt-3 text-sm tracking-wide text-ink-faint">
-          Most places online, {me.handle}.
+          {me.role} &middot; {me.location.city}, {me.location.country} &middot;{" "}
+          {me.handle} online
         </p>
 
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-2xl">
@@ -44,7 +45,7 @@ export default function Home() {
             href="#projects"
             className="group inline-flex items-center gap-2 self-start rounded-full border border-line px-6 py-3 text-ink transition-colors hover:border-accent hover:text-accent"
           >
-            See what I&apos;ve built
+            View selected work
             <ArrowDown
               size={16}
               className="transition-transform group-hover:translate-y-0.5"
@@ -55,7 +56,7 @@ export default function Home() {
             href="#contact"
             className="self-start border-b border-line pb-0.5 text-ink-muted transition-colors hover:border-accent hover:text-ink"
           >
-            or just say hello
+            Get in touch
           </Link>
         </div>
       </section>

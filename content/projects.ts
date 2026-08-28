@@ -38,11 +38,11 @@ export const projects: Project[] = [
     role: "TODO: solo? team of how many? which parts were yours?",
     status: "live",
     problem:
-      "TODO: why build a counseling platform — what did you notice that made this worth doing?",
+      "TODO: the problem this addresses — what gap in access to mental health support made it worth building?",
     build:
-      "An online counseling platform that connects people with licensed psychologists for virtual therapy sessions, built to make getting help feel ordinary rather than daunting.",
+      "An online counseling platform connecting users with licensed psychologists for virtual therapy sessions, with booking, session management and a public-facing awareness component.",
     hardPart:
-      "TODO: the thing that took three evenings to get right. Scheduling? Session privacy? Getting Blade and Tailwind to behave?",
+      "TODO: the engineering problem that took the longest to solve — session scheduling, data privacy for counseling records, or something else.",
     tags: ["Laravel", "PHP", "Blade", "MySQL", "Tailwind CSS"],
     links: {
       demo: "https://www.beokay.my.id/",
@@ -58,9 +58,9 @@ export const projects: Project[] = [
     role: "TODO",
     status: "archived",
     problem:
-      "TODO: what's annoying about navigating a mall that made you want to fix it?",
+      "TODO: the problem this addresses — what makes navigating a large mall difficult enough to warrant an app?",
     build:
-      "A mobile directory for mall visitors: an interactive tenant guide, promo alerts, and a planner for mapping out a visit before you leave the house.",
+      "A mobile directory for mall visitors, comprising an interactive tenant guide, promotional alerts and an itinerary planner for structuring a visit in advance.",
     hardPart: "TODO",
     tags: ["React Native", "TypeScript", "MySQL"],
     links: { repo: "https://github.com/fl4me04/xperimall" },
@@ -73,13 +73,13 @@ export const projects: Project[] = [
     role: "TODO",
     status: "archived",
     problem:
-      "TODO: a class assignment? a real shop that needed this? Say which — 'built for a course' is a perfectly good answer and reads as honest.",
+      "TODO: the context this was built for — coursework, a real retailer, or your own initiative. Stating it plainly is better than leaving it ambiguous.",
     build:
       "A desktop retail management system in Java, built on a strict MVC split, with transactional logic, MySQL persistence via JDBC, and real session handling.",
     hardPart:
-      "TODO: keeping transactions correct? The MVC discipline? Swing layouts?",
+      "TODO: the hardest part to get right — transactional integrity, enforcing the MVC boundaries, or the desktop UI layer.",
     wouldChange:
-      "TODO: what you'd rebuild now that you know more. This field is optional but it's the most human line on the page.",
+      "TODO: what you would architect differently with what you know now. Optional, but it demonstrates judgement better than any feature list.",
     tags: ["Java", "MVC", "MySQL", "JDBC", "OOP"],
     links: { repo: "https://github.com/fl4me04/JoymarKet" },
     // TODO: drop a real screenshot in /public and point `image` at it.

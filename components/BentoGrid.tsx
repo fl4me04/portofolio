@@ -22,10 +22,13 @@ const Card = ({
 
 // Written out rather than icon-matched: the old list paired Go, Python
 // and C with whatever lucide icon was closest, which fooled nobody.
+// TODO: confirm the Swift/SwiftUI line and move anything that no longer
+// belongs — I inferred those from the Apple Developer Academy role.
 const stack = {
-  "Reach for daily": ["Java", "Laravel / PHP", "TypeScript", "MySQL"],
-  "Comfortable in": ["React", "Next.js", "Tailwind", "Python"],
-  "Know enough to be dangerous": ["Go", "C / C++", "React Native"],
+  "Currently working in": ["Swift", "SwiftUI", "Xcode"],
+  "Core experience": ["Java", "Laravel / PHP", "TypeScript", "MySQL"],
+  Proficient: ["React", "Next.js", "Tailwind CSS", "Python"],
+  Familiar: ["Go", "C / C++", "React Native"],
 };
 
 const socials = [
@@ -47,7 +50,7 @@ const BentoGrid = () => {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="mb-12 font-display text-4xl text-ink md:mb-16 md:text-5xl"
       >
-        A bit about me
+        About
       </motion.h2>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
@@ -83,7 +86,7 @@ const BentoGrid = () => {
         >
           <Card className="flex flex-1 flex-col justify-center p-7">
             <p className="mb-2 text-xs tracking-wide text-ink-faint">
-              Somewhere in
+              Based in
             </p>
             <p className="font-display text-2xl text-ink">
               {me.location.city}
@@ -99,7 +102,7 @@ const BentoGrid = () => {
 
           <Card className="p-7">
             <p className="mb-4 text-xs tracking-wide text-ink-faint">
-              Find me on
+              Elsewhere
             </p>
             <div className="flex gap-3">
               {socials.map(({ icon: Icon, href, label }) => (
@@ -128,7 +131,7 @@ const BentoGrid = () => {
       >
         <Card className="p-7 md:p-10">
           <div className="mb-5 flex flex-wrap items-baseline gap-3">
-            <h3 className="font-display text-2xl text-ink">Right now</h3>
+            <h3 className="font-display text-2xl text-ink">Currently</h3>
             <span className="text-xs text-ink-faint">
               updated {me.now.updated}
             </span>
@@ -153,7 +156,7 @@ const BentoGrid = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-3 md:gap-6"
+        className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-6 lg:grid-cols-4"
       >
         {Object.entries(stack).map(([label, items]) => (
           <Card key={label} className="p-7">

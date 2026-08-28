@@ -21,6 +21,7 @@ const Footer = () => {
             {me.name}
             <span className="text-warm">.</span>
           </p>
+          <p className="mt-1 text-sm text-ink-faint">{me.role}</p>
           <p className="mt-3 max-w-xs leading-relaxed text-ink-muted">
             {me.signOff}
           </p>
@@ -44,10 +45,9 @@ const Footer = () => {
       <div className="mx-auto mt-12 max-w-7xl border-t border-line pt-6">
         <div className="flex flex-col gap-3 text-xs text-ink-faint md:flex-row md:justify-between">
           <p>
-            © {currentYear} {me.name}. Built by hand, broken and fixed a few
-            times.
+            © {currentYear} {me.name}. All rights reserved.
           </p>
-          <p>Next.js, Tailwind, and too much coffee.</p>
+          <p>Built with Next.js, TypeScript and Tailwind CSS.</p>
         </div>
       </div>
     </footer>

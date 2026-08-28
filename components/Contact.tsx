@@ -58,16 +58,15 @@ const Contact = () => {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="font-display text-4xl text-ink md:text-5xl">
-            Say hello
+            Get in touch
           </h2>
           <p className="mt-5 max-w-md leading-relaxed text-ink-muted">
-            I read everything that arrives, and I answer most of it — though
-            not always quickly, and it&apos;s{" "}
+            I am open to roles, collaborations and project enquiries, and I
+            reply to everything that reaches me. It is currently{" "}
             <span className="whitespace-nowrap">
               <LocalTime />
             </span>{" "}
-            where I am. Work, questions, or just something you thought I&apos;d
-            like: all welcome.
+            in {me.location.city}, so allow for the time difference.
           </p>
 
           <button
@@ -80,7 +79,7 @@ const Contact = () => {
             </span>
             <span className="flex-1">
               <span className="block text-xs text-ink-faint">
-                Or email me directly
+                Email
               </span>
               <span className="mt-1 block break-all text-ink">{me.email}</span>
             </span>
@@ -93,7 +92,7 @@ const Contact = () => {
             </span>
           </button>
           <p className="mt-3 text-xs text-ink-faint">
-            {copied ? "Copied — talk soon." : "Click to copy."}
+            {copied ? "Copied to clipboard." : "Click to copy."}
           </p>
         </motion.div>
 
@@ -107,7 +106,7 @@ const Contact = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm text-ink-muted">
-                Your name
+                Name
               </label>
               <input
                 type="text"
@@ -117,13 +116,13 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 className="w-full rounded-xl border border-line bg-black/40 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
-                placeholder="Whoever you are"
+                placeholder="Your name"
               />
             </div>
 
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm text-ink-muted">
-                Where I can reach you
+                Email address
               </label>
               <input
                 type="email"
@@ -133,13 +132,13 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 className="w-full rounded-xl border border-line bg-black/40 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
-                placeholder="you@somewhere.com"
+                placeholder="you@company.com"
               />
             </div>
 
             <div className="space-y-2">
               <label htmlFor="message" className="text-sm text-ink-muted">
-                What&apos;s on your mind
+                Message
               </label>
               <textarea
                 id="message"
@@ -149,7 +148,7 @@ const Contact = () => {
                 required
                 rows={5}
                 className="w-full resize-none rounded-xl border border-line bg-black/40 px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
-                placeholder="No need to make it formal."
+                placeholder="A little about the role, project or question."
               />
             </div>
 
@@ -162,7 +161,11 @@ const Contact = () => {
                   : "border-line text-ink hover:border-accent hover:text-accent"
               }`}
             >
-              {isSubmitting ? "Sending…" : isSent ? "Sent — thank you" : "Send"}
+              {isSubmitting
+                ? "Sending…"
+                : isSent
+                  ? "Message sent — thank you"
+                  : "Send message"}
             </button>
           </form>
         </motion.div>

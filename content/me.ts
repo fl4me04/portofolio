@@ -1,21 +1,22 @@
 /**
  * Everything the site says about you lives here.
  *
- * Rewrite these strings in your own voice and the whole page changes.
- * Anything marked TODO is a fact I could not invent for you — those
- * are the lines that do the most work, so they are worth your time.
+ * Rewrite these strings and the whole page changes. Anything marked
+ * TODO is a fact I could not write for you — those lines carry the most
+ * weight with a reader, so they are worth your time.
  */
 
 export const me = {
-  name: "Shem", // TODO: full name as you want it shown
+  name: "Shem Josh Lowell",
+  shortName: "Shem", // used where the full name would crowd the layout
   handle: "Fl4me",
-  role: "Full-stack developer",
+  role: "iOS Developer",
 
   metaDescription:
-    "Shem (Fl4me) — a full-stack developer in Jakarta who builds web and desktop apps, and writes about what breaks along the way.",
+    "Shem Josh Lowell — iOS Developer at the Apple Developer Academy @ BINUS, with a background in full-stack web and desktop engineering.",
 
   location: {
-    city: "Jakarta",
+    city: "Tangerang",
     country: "Indonesia",
     timeZone: "Asia/Jakarta",
   },
@@ -30,36 +31,35 @@ export const me = {
 
   /* --- Hero -------------------------------------------------------- */
 
-  // One sentence. What you make, in words you'd actually say out loud.
-  // TODO: replace with the real thing.
-  hook: "I build the unglamorous half of web apps — the schemas, the auth, the parts that have to still work at 2am.",
+  // The opening claim. Specific enough to be worth reading twice.
+  hook: "I build iOS applications at the Apple Developer Academy @ BINUS, drawing on a background in full-stack web and desktop engineering.",
 
-  // A second, quieter line. Somewhere to be specific or a little funny.
-  // TODO
-  hookSub: "Mostly in Java and Laravel. Occasionally against my better judgement.",
+  // A second line for the detail the first sentence had no room for.
+  hookSub:
+    "Swift and SwiftUI today; Java, Laravel and TypeScript before that. The through-line is systems that hold up once real people use them.",
 
   /* --- About ------------------------------------------------------- */
 
-  // TODO: 2–4 sentences, first person. What got you into this, what you
-  // are doing right now, what you are still bad at. The last one matters.
+  // First person, measured. Three short paragraphs is the right length:
+  // long enough to say something, short enough to be read.
   about: [
-    "TODO: how you got into building things — the actual first thing you made, not 'I've been passionate about technology since childhood'.",
-    "TODO: what you're doing now — studying? working? which year, where?",
-    "TODO: one thing you're genuinely still figuring out.",
+    "TODO: how you came to software — the first thing you built that actually worked. Concrete beats sweeping; skip 'passionate about technology since childhood'.",
+    "I am currently an iOS Developer at the Apple Developer Academy @ BINUS in Tangerang, where I design and build applications for Apple platforms alongside a cohort of developers, designers and product thinkers.",
+    "TODO: what you are deliberately getting better at right now. Naming a genuine gap reads as confidence, not weakness — it is the most credible sentence on most portfolios.",
   ],
 
-  // Dated on purpose: a 'now' line signals a living site.
+  // A dated list is the clearest signal that a site is maintained.
   now: {
-    updated: "TODO: e.g. August 2026",
+    updated: "August 2026",
     items: [
-      "TODO: what you're building this month",
-      "TODO: what you're learning",
-      "TODO: something not code — a game, a book, a hobby",
+      "Developing iOS applications in Swift and SwiftUI at the Apple Developer Academy @ BINUS.",
+      "TODO: the specific project or skill you are focused on this month.",
+      "TODO: one interest outside of engineering. One line is enough, and it keeps the section from reading like a résumé.",
     ],
   },
 
   /* --- Footer ------------------------------------------------------ */
 
-  // TODO: a sign-off in your voice. Not 'building digital experiences'.
-  signOff: "Made in Jakarta, mostly at night.",
+  signOff:
+    "Building considered software for Apple platforms and the web, from Tangerang, Indonesia.",
 } as const;

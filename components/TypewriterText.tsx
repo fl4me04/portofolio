@@ -56,7 +56,7 @@ const TypewriterText = () => {
   }, [text, isDeleting, index, reduceMotion]);
 
   if (reduceMotion) {
-    return <p className="text-lg text-ink-muted md:text-xl">Hello —</p>;
+    return <p className="text-lg text-ink-muted md:text-xl">Hello</p>;
   }
 
   return (

@@ -104,7 +104,7 @@ const ProjectCard = ({
 
           <div className="border-t border-line pt-4">
             <p className="mb-1 text-xs tracking-wide text-warm/80">
-              The hard part
+              Key challenge
             </p>
             <p className="text-sm leading-relaxed text-ink-muted">
               {project.hardPart}
@@ -114,7 +114,7 @@ const ProjectCard = ({
           {project.wouldChange && (
             <div className="border-t border-line pt-4">
               <p className="mb-1 text-xs tracking-wide text-warm/80">
-                What I&apos;d do differently
+                What I would approach differently
               </p>
               <p className="text-sm leading-relaxed text-ink-muted">
                 {project.wouldChange}
@@ -177,10 +177,11 @@ const Projects = () => {
         className="mb-14 max-w-2xl md:mb-24"
       >
         <h2 className="font-display text-4xl text-ink md:text-5xl">
-          Things I&apos;ve built
+          Selected work
         </h2>
         <p className="mt-4 leading-relaxed text-ink-muted">
-          Three of them, with the parts that went wrong left in.
+          Three projects, described with the engineering problems they
+          presented rather than a list of features.
         </p>
       </motion.div>
 
@@ -196,7 +197,7 @@ const Projects = () => {
           target="_blank"
           className="group flex items-center gap-2 border-b border-line pb-1 text-ink transition-colors hover:border-accent hover:text-accent"
         >
-          The rest is on GitHub
+          View the full archive on GitHub
           <ArrowUpRight
             size={16}
             className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"

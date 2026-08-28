@@ -110,7 +110,7 @@ export default function Navbar() {
               href="/"
               className="font-display text-xl tracking-tight text-ink"
             >
-              {me.name}<span className="text-warm">.</span>
+              {me.shortName}<span className="text-warm">.</span>
             </Link>
           </motion.div>
 
