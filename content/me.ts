@@ -61,5 +61,5 @@ export const me = {
   /* --- Footer ------------------------------------------------------ */
 
   signOff:
-    "Building considered software for Apple platforms and the web, from Tangerang, Indonesia.",
+    "Building considered software for Apple platforms and the web.",
 } as const;
