@@ -3,8 +3,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-// Kept, but demoted. This used to be the biggest thing on the page at
-// 7xl; a rotating greeting is a nice touch, not a headline.
 const greetings = [
   "Hello!",
   "Halo!",
@@ -38,8 +36,6 @@ const TypewriterText = () => {
 
     const step = setTimeout(
       () => {
-        // Advancing to the next word happens here rather than in the
-        // effect body, so no state is set synchronously during render.
         if (isDeleting && text === "") {
           setIsDeleting(false);
           setIndex((prev) => prev + 1);
@@ -50,7 +46,6 @@ const TypewriterText = () => {
           isDeleting ? prev.slice(0, -1) : word.slice(0, prev.length + 1),
         );
       },
-      // A touch of jitter so it types like a person, not a metronome.
       isDeleting ? DELETE_MS : TYPE_MS + Math.random() * 45,
     );
 
@@ -66,10 +61,6 @@ const TypewriterText = () => {
   }
 
   return (
-    // h-7 (1.75rem) is the line-height of both text-lg and text-xl. Without
-    // it the paragraph's height came from whichever child was tallest: the
-    // text's line box while typing, but the shorter cursor once the text
-    // emptied, so the whole page shifted up on every delete cycle.
     <p
       className="flex h-7 items-center text-lg text-ink-muted md:text-xl"
       aria-label="Hello!"
