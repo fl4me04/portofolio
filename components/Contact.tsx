@@ -2,55 +2,67 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Copy, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Copy,
+  Check,
+  Github,
+  Linkedin,
+  Instagram,
+  ArrowUpRight,
+} from "lucide-react";
+import Link from "next/link";
 import { me } from "@/content/me";
 import LocalTime from "./LocalTime";
 import SectionHeading from "./SectionHeading";
 
+const Row = ({
+  label,
+  icon: Icon,
+  children,
+}: {
+  label: string;
+  icon: React.ElementType;
+  children: React.ReactNode;
+}) => (
+  <div className="flex gap-4 border-b border-line py-5 first:pt-0 last:border-0 last:pb-0">
+    <span className="mt-0.5 text-ink-faint">
+      <Icon size={16} />
+    </span>
+    <div className="min-w-0 flex-1">
+      <p className="mb-1 text-xs tracking-widest text-ink-faint uppercase">
+        {label}
+      </p>
+      {children}
+    </div>
+  </div>
+);
+
+const socials = [
+  { icon: Github, href: me.socials.github, label: "GitHub" },
+  { icon: Linkedin, href: me.socials.linkedin, label: "LinkedIn" },
+  { icon: Instagram, href: me.socials.instagram, label: "Instagram" },
+];
+
 const Contact = () => {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
-  };
-
-  // ⚠️ TODO — THIS FORM DOES NOT SEND ANYTHING.
-  // It waits two seconds and claims success. Anyone who writes to you
-  // here believes they have reached you and has not. Wire it to
-  // Formspree or a Next route handler before this goes live, or delete
-  // the form and point people at the email card beside it.
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSent(true);
-      setFormState({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSent(false), 3000);
-    }, 2000);
-  };
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(me.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(me.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard access can be refused; the address is selectable text
+      // and the mailto link beside it still works.
+    }
   };
 
   return (
-    <section
-      className="relative z-20 mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32"
-    >
+    <section className="relative z-20 mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
       <span id="contact" aria-hidden className="block scroll-mt-24" />
+
       <SectionHeading title="Get in touch" />
 
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-16">
@@ -64,39 +76,20 @@ const Contact = () => {
             Open to new opportunities
           </h3>
           <p className="mt-4 max-w-md leading-relaxed text-ink-muted">
-            I am open to roles, collaborations and project enquiries, and I
-            reply to everything that reaches me. It is currently{" "}
-            <span className="whitespace-nowrap">
-              <LocalTime />
-            </span>{" "}
-            in {me.location.city}, so allow for the time difference.
+            I am open to roles, collaborations and project enquiries. Email is
+            the surest way to reach me, and I reply to everything that arrives.
           </p>
 
-          <button
-            type="button"
-            onClick={handleCopyEmail}
-            className="group mt-8 flex w-full items-center gap-4 rounded-2xl border border-line bg-surface p-6 text-left transition-colors hover:border-accent"
+          <Link
+            href={`mailto:${me.email}`}
+            className="group mt-8 inline-flex h-12 items-center gap-2 rounded-full border border-line px-6 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
           >
-            <span className="rounded-full border border-line p-3 text-accent">
-              <Mail size={20} />
-            </span>
-            <span className="flex-1">
-              <span className="block text-xs tracking-widest text-ink-faint uppercase">
-                Email
-              </span>
-              <span className="mt-1 block break-all text-ink">{me.email}</span>
-            </span>
-            <span className="text-ink-faint transition-colors group-hover:text-ink">
-              {copied ? (
-                <CheckCircle size={16} className="text-warm" />
-              ) : (
-                <Copy size={16} />
-              )}
-            </span>
-          </button>
-          <p className="mt-3 text-xs text-ink-faint">
-            {copied ? "Copied to clipboard." : "Click to copy."}
-          </p>
+            Send me an email
+            <ArrowUpRight
+              size={16}
+              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </Link>
         </motion.div>
 
         <motion.div
@@ -104,73 +97,63 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-2xl border border-line bg-surface p-6 backdrop-blur-xl md:p-8"
+          className="rounded-2xl border border-line bg-surface p-6 md:p-8"
         >
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm text-ink-muted">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formState.name}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border border-line bg-field px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
-                placeholder="Your name"
-              />
+          <Row label="Email" icon={Mail}>
+            <div className="flex items-center gap-3">
+              <Link
+                href={`mailto:${me.email}`}
+                className="truncate text-ink transition-colors hover:text-accent"
+              >
+                {me.email}
+              </Link>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                aria-label="Copy email address"
+                className="-my-3 -mr-3 flex h-11 w-11 shrink-0 items-center justify-center text-ink-faint transition-colors hover:text-ink"
+              >
+                {copied ? (
+                  <Check size={16} className="text-warm" />
+                ) : (
+                  <Copy size={16} />
+                )}
+              </button>
             </div>
+            <p className="mt-1 h-4 text-xs text-ink-faint">
+              {copied ? "Copied to clipboard." : ""}
+            </p>
+          </Row>
 
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm text-ink-muted">
-                Email address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formState.email}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border border-line bg-field px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
-                placeholder="you@company.com"
-              />
-            </div>
+          <Row label="Based in" icon={MapPin}>
+            <p className="text-ink">
+              {me.location.city}, {me.location.country}
+            </p>
+            <p className="mt-1 text-sm">
+              <LocalTime />
+            </p>
+          </Row>
 
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm text-ink-muted">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formState.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className="w-full resize-none rounded-xl border border-line bg-field px-4 py-3 text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-accent"
-                placeholder="A little about the role, project or question."
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting || isSent}
-              className={`flex h-12 w-full items-center justify-center rounded-xl border text-sm transition-colors ${
-                isSent
-                  ? "border-warm text-warm"
-                  : "border-line text-ink hover:border-accent hover:text-accent"
-              }`}
-            >
-              {isSubmitting
-                ? "Sending…"
-                : isSent
-                  ? "Message sent — thank you"
-                  : "Send message"}
-            </button>
-          </form>
+          <Row label="Elsewhere" icon={ArrowUpRight}>
+            <ul className="flex flex-col gap-2">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    target="_blank"
+                    className="group inline-flex items-center gap-2 py-1 text-ink transition-colors hover:text-accent"
+                  >
+                    <Icon size={16} className="text-ink-faint" />
+                    {label}
+                    <ArrowUpRight
+                      size={16}
+                      className="text-ink-faint opacity-0 transition-opacity group-hover:opacity-100"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Row>
         </motion.div>
       </div>
     </section>
