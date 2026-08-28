@@ -5,6 +5,7 @@ import { Github, Linkedin, Instagram } from "lucide-react";
 import Link from "next/link";
 import { me } from "@/content/me";
 import LocalTime from "./LocalTime";
+import SectionHeading from "./SectionHeading";
 
 const Card = ({
   children,
@@ -41,17 +42,9 @@ const BentoGrid = () => {
   return (
     <section
       id="about"
-      className="mx-auto max-w-6xl scroll-mt-15 px-4 py-20 md:scroll-mt-0 md:py-32"
+      className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28"
     >
-      <motion.h2
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-12 font-display text-4xl text-ink md:mb-16 md:text-5xl"
-      >
-        About
-      </motion.h2>
+      <SectionHeading title="About" />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
         {/* Prose. Deliberately the largest thing on the screen. */}

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { projects, type Project } from "@/content/projects";
 import { me } from "@/content/me";
+import SectionHeading from "./SectionHeading";
 
 const statusLabel: Record<Project["status"], string> = {
   live: "Live",
@@ -60,7 +61,7 @@ const ProjectCard = ({
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group relative mb-20 grid grid-cols-1 items-center gap-6 last:mb-0 md:mb-32 md:grid-cols-12 md:gap-10"
+      className="group relative mb-16 grid grid-cols-1 items-center gap-6 last:mb-0 md:mb-24 md:grid-cols-12 md:gap-10"
     >
       <div
         className={`relative overflow-hidden rounded-2xl border border-line md:col-span-7 ${
@@ -167,23 +168,12 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="mx-auto max-w-7xl scroll-mt-15 px-4 py-16 md:scroll-mt-0 md:py-32"
+      className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-14 max-w-2xl md:mb-24"
-      >
-        <h2 className="font-display text-4xl text-ink md:text-5xl">
-          Selected work
-        </h2>
-        <p className="mt-4 leading-relaxed text-ink-muted">
-          Three projects, described with the engineering problems they
-          presented rather than a list of features.
-        </p>
-      </motion.div>
+      <SectionHeading
+        title="Selected work"
+        intro="Three projects, described with the engineering problems they presented rather than a list of features."
+      />
 
       <div className="flex flex-col">
         {projects.map((project, index) => (
@@ -191,7 +181,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <div className="mt-16 flex md:mt-24">
+      <div className="mt-14 flex">
         <Link
           href={me.socials.github}
           target="_blank"

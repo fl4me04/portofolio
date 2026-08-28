@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Mail, Copy, CheckCircle } from "lucide-react";
 import { me } from "@/content/me";
 import LocalTime from "./LocalTime";
+import SectionHeading from "./SectionHeading";
 
 const Contact = () => {
   const [formState, setFormState] = useState({
@@ -48,8 +49,10 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative z-20 mx-auto max-w-7xl scroll-mt-15 px-4 py-20 md:scroll-mt-0 md:py-32"
+      className="relative z-20 mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28"
     >
+      <SectionHeading title="Get in touch" />
+
       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -57,10 +60,10 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="font-display text-4xl text-ink md:text-5xl">
-            Get in touch
-          </h2>
-          <p className="mt-5 max-w-md leading-relaxed text-ink-muted">
+          <h3 className="font-display text-2xl text-ink md:text-3xl">
+            Open to new opportunities
+          </h3>
+          <p className="mt-4 max-w-md leading-relaxed text-ink-muted">
             I am open to roles, collaborations and project enquiries, and I
             reply to everything that reaches me. It is currently{" "}
             <span className="whitespace-nowrap">
