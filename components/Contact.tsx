@@ -2,197 +2,158 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send, Copy, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Copy,
+  Check,
+  Github,
+  Linkedin,
+  Instagram,
+  ArrowUpRight,
+} from "lucide-react";
+import Link from "next/link";
+import { me } from "@/content/me";
+import LocalTime from "./LocalTime";
+import SectionHeading from "./SectionHeading";
+
+const Row = ({
+  label,
+  icon: Icon,
+  children,
+}: {
+  label: string;
+  icon: React.ElementType;
+  children: React.ReactNode;
+}) => (
+  <div className="flex gap-4 border-b border-line py-5 first:pt-0 last:border-0 last:pb-0">
+    <span className="mt-0.5 text-ink-faint">
+      <Icon size={16} />
+    </span>
+    <div className="min-w-0 flex-1">
+      <p className="mb-1 text-xs tracking-widest text-ink-faint uppercase">
+        {label}
+      </p>
+      {children}
+    </div>
+  </div>
+);
+
+const socials = [
+  { icon: Github, href: me.socials.github, label: "GitHub" },
+  { icon: Linkedin, href: me.socials.linkedin, label: "LinkedIn" },
+  { icon: Instagram, href: me.socials.instagram, label: "Instagram" },
+];
 
 const Contact = () => {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const myEmail = "fl4mes04@gmail.com";
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSent(true);
-      setFormState({ name: "", email: "", message: "" });
-
-      setTimeout(() => setIsSent(false), 3000);
-    }, 2000);
-  };
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(myEmail);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(me.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard access can be refused; the address is selectable text
+      // and the mailto link beside it still works.
+    }
   };
 
   return (
-    <section
-      id="contact"
-      className="py-12 md:py-32 px-4 max-w-7xl mx-auto relative z-20 scroll-mt-15 md:scroll-mt-0"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+    <section className="relative z-20 mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
+      <span id="contact" aria-hidden className="block scroll-mt-24" />
+
+      <SectionHeading title="Get in touch" />
+
+      <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-16">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 md:mb-0"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Let&apos;s{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Connect.
-            </span>
-          </h2>
-          <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 leading-relaxed">
-            Have a project in mind or just want to discuss the latest tech?
-            I&apos;m always open to new opportunities and interesting
-            conversations.
+          <h3 className="font-display text-xl leading-tight text-ink md:text-2xl">
+            Open to new opportunities
+          </h3>
+          <p className="mt-4 max-w-md leading-relaxed text-ink-muted">
+            I am open to roles, collaborations and project enquiries. Email is
+            the surest way to reach me, and I reply to everything that arrives.
           </p>
 
-          <div className="space-y-4 md:space-y-6">
-            <div
-              onClick={handleCopyEmail}
-              className="group flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 cursor-pointer transition-all active:scale-95"
-            >
-              <div className="p-3 rounded-full bg-blue-500/20 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                <Mail size={24} />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-500 mb-1">Mail me at</p>
-                <p className="text-white font-medium text-base md:text-lg break-all">
-                  {myEmail}
-                </p>
-              </div>
-              <div className="text-gray-500 group-hover:text-white transition-colors">
-                {copied ? (
-                  <CheckCircle size={20} className="text-green-500" />
-                ) : (
-                  <Copy size={20} />
-                )}
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-              <div className="p-3 rounded-full bg-purple-500/20 text-purple-400">
-                <MapPin size={24} />
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Based in</p>
-                <p className="text-white font-medium text-base md:text-lg">
-                  Jakarta, Indonesia
-                </p>
-              </div>
-            </div>
-          </div>
+          <Link
+            href={`mailto:${me.email}`}
+            className="group mt-8 inline-flex h-12 items-center gap-2 rounded-full border border-line px-6 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+          >
+            Send me an email
+            <ArrowUpRight
+              size={16}
+              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </Link>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl"
+          transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-2xl border border-line bg-surface p-6 md:p-8"
         >
-          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-            <div className="space-y-2">
-              <label
-                htmlFor="name"
-                className="text-sm font-medium text-gray-300"
+          <Row label="Email" icon={Mail}>
+            <div className="flex items-center gap-3">
+              <Link
+                href={`mailto:${me.email}`}
+                className="truncate text-ink transition-colors hover:text-accent"
               >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formState.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-white placeholder-gray-600 transition-all text-sm md:text-base"
-                placeholder="John Doe"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="text-sm font-medium text-gray-300"
+                {me.email}
+              </Link>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                aria-label="Copy email address"
+                className="-my-3 -mr-3 flex h-11 w-11 shrink-0 items-center justify-center text-ink-faint transition-colors hover:text-ink"
               >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formState.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-white placeholder-gray-600 transition-all text-sm md:text-base"
-                placeholder="john@example.com"
-              />
+                {copied ? (
+                  <Check size={16} className="text-warm" />
+                ) : (
+                  <Copy size={16} />
+                )}
+              </button>
             </div>
+            <p className="mt-1 h-4 text-xs text-ink-faint">
+              {copied ? "Copied to clipboard." : ""}
+            </p>
+          </Row>
 
-            <div className="space-y-2">
-              <label
-                htmlFor="message"
-                className="text-sm font-medium text-gray-300"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formState.message}
-                onChange={handleChange}
-                required
-                rows={4}
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-white placeholder-gray-600 transition-all resize-none text-sm md:text-base"
-                placeholder="Tell me about your project..."
-              />
-            </div>
+          <Row label="Based in" icon={MapPin}>
+            <p className="text-ink">
+              {me.location.city}, {me.location.country}
+            </p>
+            <p className="mt-1 text-sm">
+              <LocalTime />
+            </p>
+          </Row>
 
-            <button
-              type="submit"
-              disabled={isSubmitting || isSent}
-              className={`w-full py-3 md:py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${
-                isSent
-                  ? "bg-green-500 text-white cursor-default"
-                  : "bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] text-white"
-              }`}
-            >
-              {isSubmitting ? (
-                <span className="animate-pulse">Sending...</span>
-              ) : isSent ? (
-                <>
-                  Sent Successfully <CheckCircle size={20} />
-                </>
-              ) : (
-                <>
-                  Send Message <Send size={20} />
-                </>
-              )}
-            </button>
-          </form>
+          <Row label="Elsewhere" icon={ArrowUpRight}>
+            <ul className="flex flex-col gap-2">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    target="_blank"
+                    className="group inline-flex items-center gap-2 py-1 text-ink transition-colors hover:text-accent"
+                  >
+                    <Icon size={16} className="text-ink-faint" />
+                    {label}
+                    <ArrowUpRight
+                      size={16}
+                      className="text-ink-faint opacity-0 transition-opacity group-hover:opacity-100"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Row>
         </motion.div>
       </div>
     </section>

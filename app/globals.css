@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------
+   DESIGN SYSTEM
+
+   Type roles (font-display for headings, Inter for everything else):
+     h1  display     text-5xl / md:text-7xl, leading 1.05, tracking-tight
+     h2  section     text-2xl / md:text-3xl, leading-tight
+     h3  subsection  text-xl  / md:text-2xl, leading-tight
+     lead            text-lg  / md:text-xl   (hero)
+                     text-base/ md:text-lg   (section prose)
+     body            text-base, leading-relaxed
+     secondary       text-sm
+     kicker          text-sm tracking-wide text-ink-faint (hero only)
+     label           text-xs tracking-widest uppercase
+
+   Headings carry no weight class: the serif supplies the contrast, so
+   nothing on the page overrides font-weight. Large display type is
+   tracked in, small labels are tracked out — the two ends of the scale
+   need opposite treatment to read evenly.
+
+   Measure: prose is held to roughly 60-75 characters per line. That is
+   what max-w-xl / max-w-2xl are doing on the hero, and why the project
+   cards are a 6/6 split rather than 7/5 — at 7/5 the text column ran to
+   44 characters, which breaks the line too often to read comfortably.
+
+   Radii:  rounded-full pills and buttons
+           rounded-2xl  cards and panels
+           rounded-xl   inputs and small controls
+
+   Icons:  16 for interface, 20 for emphasis. No other sizes.
+
+   Spacing: a 4px scale — 4 8 12 16 24 32 40 48 64 96 128.
+            Page gutter px-6 md:px-10, container max-w-6xl, section
+            rhythm py-24 md:py-32.
+   --------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------
+   Design tokens.
+   Warm near-black instead of pure #000, warm greys instead of the
+   default cool ones, and a single restrained accent. The old neon
+   blue/purple/pink gradient is gone on purpose: one accent, used
+   rarely, reads as a person's choice rather than a template.
+   --------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0c0b0a;
+  --bg-raised: #141211;
+  --ink: #f4f1ec;
+  --ink-muted: #a6a09a;
+  /* Lightened from #6d6862, which sat at 3.56:1 against the
+     background — below WCAG AA's 4.5:1 — while carrying the smallest
+     text on the page (12px and 14px meta). Now 4.8:1. */
+  --ink-faint: #827c75;
+  --accent: #7ca9dd;
+  --accent-soft: rgba(124, 169, 221, 0.14);
+  --warm: #d9a441;
+  --line: rgba(255, 255, 255, 0.08);
+
+  /* Panel surface, previously written inline as bg-white/[0.03] in four
+     separate places. */
+  --surface: rgba(255, 255, 255, 0.03);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-warm: var(--warm);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Native smooth scrolling, which only applies to anchor jumps and leaves
+   the wheel alone. Lenis used to drive this: it intercepted every wheel
+   event, which is what made scrolling feel heavy, and it kept its own
+   scroll position that desynced from the browser's on a hash change,
+   which is what left the page misaligned after clicking a nav link. */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* Respect people who have asked their OS to calm things down.
+   Framer Motion reads this too, but the canvas starfield and the
+   marquee need the CSS escape hatch. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
