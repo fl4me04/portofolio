@@ -32,6 +32,15 @@
   --font-display: var(--font-display);
 }
 
+/* Native smooth scrolling, which only applies to anchor jumps and leaves
+   the wheel alone. Lenis used to drive this: it intercepted every wheel
+   event, which is what made scrolling feel heavy, and it kept its own
+   scroll position that desynced from the browser's on a hash change,
+   which is what left the page misaligned after clicking a nav link. */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);

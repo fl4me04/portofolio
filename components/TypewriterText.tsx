@@ -56,12 +56,16 @@ const TypewriterText = () => {
   }, [text, isDeleting, index, reduceMotion]);
 
   if (reduceMotion) {
-    return <p className="text-lg text-ink-muted md:text-xl">Hello</p>;
+    return <p className="flex h-7 items-center text-lg text-ink-muted md:text-xl">Hello</p>;
   }
 
   return (
+    // h-7 (1.75rem) is the line-height of both text-lg and text-xl. Without
+    // it the paragraph's height came from whichever child was tallest: the
+    // text's line box while typing, but the shorter cursor once the text
+    // emptied, so the whole page shifted up on every delete cycle.
     <p
-      className="flex items-center text-lg text-ink-muted md:text-xl"
+      className="flex h-7 items-center text-lg text-ink-muted md:text-xl"
       aria-label="Hello"
     >
       <span aria-hidden>{text}</span>

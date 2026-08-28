@@ -3,7 +3,6 @@ import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/NavigationBar";
 import Footer from "@/components/Footer";
-import SmoothScroll from "@/components/SmoothScroll";
 import { me } from "@/content/me";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -38,7 +37,6 @@ export default function RootLayout({
       <body
         className={`antialiased bg-bg text-ink ${inter.variable} ${display.variable} font-sans`}
       >
-        <SmoothScroll />
         <Navbar />
         {children}
         <Footer />

@@ -25,7 +25,7 @@ export default function Home() {
             visible underneath, which says 'keep scrolling'. */}
         <section
           id="home"
-          className="mx-auto flex min-h-[86vh] w-full max-w-6xl flex-col justify-center px-5 pt-32 pb-20 md:px-8"
+          className="mx-auto flex min-h-[82vh] w-full max-w-6xl scroll-mt-20 flex-col justify-center px-5 pt-20 pb-20 md:px-8"
         >
           <TypewriterText />
 

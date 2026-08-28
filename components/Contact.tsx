@@ -49,7 +49,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative z-20 mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28"
+      className="relative z-20 mx-auto max-w-6xl scroll-mt-20 px-5 py-20 md:px-8 md:py-28"
     >
       <SectionHeading title="Get in touch" />
 
