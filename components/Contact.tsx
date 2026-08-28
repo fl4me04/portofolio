@@ -26,11 +26,11 @@ const Row = ({
   icon: React.ElementType;
   children: React.ReactNode;
 }) => (
-  <div className="flex gap-4 border-b border-line py-5 first:pt-0 last:border-0 last:pb-0">
-    <span className="mt-0.5 text-ink-faint">
+  <div className="flex flex-col items-center gap-2 border-b border-line py-5 text-center first:pt-0 last:border-0 last:pb-0 md:flex-row md:items-start md:gap-4 md:text-left">
+    <span className="text-ink-faint md:mt-0.5">
       <Icon size={16} />
     </span>
-    <div className="min-w-0 flex-1">
+    <div className="w-full min-w-0 md:flex-1">
       <p className="mb-1 text-xs tracking-widest text-ink-faint uppercase">
         {label}
       </p>
@@ -60,7 +60,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative z-20 mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
+    <section className="relative z-20 mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-32">
       <span id="contact" aria-hidden className="block scroll-mt-24" />
 
       <SectionHeading title="Get in touch" />
@@ -71,18 +71,19 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center md:text-left"
         >
           <h3 className="font-display text-xl leading-tight text-ink md:text-2xl">
             Open to new opportunities
           </h3>
-          <p className="mt-4 max-w-md leading-relaxed text-ink-muted">
+          <p className="mx-auto mt-4 max-w-md leading-relaxed text-ink-muted md:mx-0">
             I am open to roles, collaborations and project enquiries. Email is
             the surest way to reach me, and I reply to everything that arrives.
           </p>
 
           <Link
             href={`mailto:${me.email}`}
-            className="group mt-8 inline-flex h-12 items-center gap-2 rounded-full border border-line px-6 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+            className="group mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line px-6 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
           >
             Send me an email
             <ArrowUpRight
@@ -100,7 +101,7 @@ const Contact = () => {
           className="rounded-2xl border border-line bg-surface p-6 md:p-8"
         >
           <Row label="Email" icon={Mail}>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center gap-3 md:justify-start">
               <Link
                 href={`mailto:${me.email}`}
                 className="truncate text-ink transition-colors hover:text-accent"
@@ -111,7 +112,7 @@ const Contact = () => {
                 type="button"
                 onClick={handleCopyEmail}
                 aria-label="Copy email address"
-                className="-my-3 -mr-3 flex h-11 w-11 shrink-0 items-center justify-center text-ink-faint transition-colors hover:text-ink"
+                className="-my-3 flex h-11 w-11 shrink-0 items-center justify-center text-ink-faint transition-colors hover:text-ink md:-mr-3"
               >
                 {copied ? (
                   <Check size={16} className="text-warm" />
@@ -135,7 +136,7 @@ const Contact = () => {
           </Row>
 
           <Row label="Elsewhere" icon={ArrowUpRight}>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col items-center gap-2 md:items-start">
               {socials.map(({ icon: Icon, href, label }) => (
                 <li key={label}>
                   <Link

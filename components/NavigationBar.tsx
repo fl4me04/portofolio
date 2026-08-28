@@ -13,14 +13,6 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
-/**
- * A docked toolbar: full-bleed, flush to the top edge, sticky rather than
- * floating in from the margins. Centred section links, with direct
- * contact links on the right.
- *
- * Height is fixed at 3.5rem; each section's anchor marker carries a
- * matching scroll margin so a jump clears the bar.
- */
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("Home");
 
@@ -41,10 +33,6 @@ export default function Navbar() {
         const el = document.getElementById(link.href.replace("#", ""));
         if (!el) return;
 
-        // getBoundingClientRect, not offsetTop: offsetTop is measured
-        // against the nearest positioned ancestor, and the contact
-        // section is `relative`, so its marker reported 80 instead of
-        // its real 6655 and won this comparison from the top of the page.
         const top = el.getBoundingClientRect().top + window.scrollY;
         if (marker >= top) current = link.name;
       });
@@ -59,7 +47,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 h-14 w-full border-b border-line bg-bg/85 backdrop-blur-md">
-      <div className="relative mx-auto flex h-full max-w-6xl items-center justify-center gap-4 px-6 sm:justify-end md:px-10">
+      <div className="relative mx-auto flex h-full max-w-6xl items-center justify-center gap-4 px-4 sm:justify-end sm:px-6 md:px-10">
         <nav
           aria-label="Primary"
           className="sm:absolute sm:left-1/2 sm:-translate-x-1/2"

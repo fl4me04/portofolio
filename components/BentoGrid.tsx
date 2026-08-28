@@ -27,7 +27,7 @@ const stack = {
 
 const BentoGrid = () => {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
+    <section className="mx-auto max-w-6xl px-6 py-20 text-center md:px-10 md:py-32 md:text-left">
       <span id="about" aria-hidden className="block scroll-mt-24" />
 
       <SectionHeading title="About" />
@@ -40,7 +40,7 @@ const BentoGrid = () => {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="md:col-span-2"
         >
-          <Card className="flex h-full flex-col justify-center p-8 md:p-10">
+          <Card className="flex h-full flex-col justify-center p-6 sm:p-8 md:p-10">
             <div className="space-y-4">
               {me.about.map((paragraph) => (
                 <p
@@ -54,7 +54,6 @@ const BentoGrid = () => {
           </Card>
         </motion.div>
 
-        {/* Dated on purpose: it is the clearest signal a site is tended to. */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +61,7 @@ const BentoGrid = () => {
           transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
           <Card className="flex h-full flex-col p-6 md:p-8">
-            <div className="mb-6 flex flex-wrap items-baseline gap-3">
+            <div className="mb-6 flex flex-wrap items-baseline justify-center gap-3 md:justify-start">
               <h3 className="font-display text-xl leading-tight text-ink md:text-2xl">
                 Currently
               </h3>
@@ -74,9 +73,11 @@ const BentoGrid = () => {
               {me.now.items.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-3 leading-relaxed text-ink-muted"
+                  className="flex justify-center gap-3 leading-relaxed text-ink-muted md:justify-start"
                 >
-                  <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-warm" />
+                  {/* The bullet is dropped on a phone: a marker in front of a
+                      centred, wrapping line reads as a misalignment. */}
+                  <span className="mt-2.5 hidden h-1 w-1 shrink-0 rounded-full bg-warm md:block" />
                   {item}
                 </li>
               ))}
@@ -85,7 +86,6 @@ const BentoGrid = () => {
         </motion.div>
       </div>
 
-      {/* Stack, grouped by honesty rather than rendered as a logo wall. */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
