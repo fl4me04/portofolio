@@ -8,7 +8,7 @@
 
 /** Matches `scroll-mt-24` on each section's anchor marker: the 56px
  *  toolbar plus 40px of clearance. */
-export const SCROLL_OFFSET = 96;
+const SCROLL_OFFSET = 96;
 
 export function scrollToId(id: string) {
   const el = document.getElementById(id);

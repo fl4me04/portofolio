@@ -8,8 +8,6 @@
 
 export const me = {
   name: "Shem Josh Lowell",
-  shortName: "Shem", // used where the full name would crowd the layout
-  handle: "Fl4me",
   role: "iOS Developer",
 
   metaDescription:

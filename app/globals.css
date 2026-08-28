@@ -56,12 +56,9 @@
   --warm: #d9a441;
   --line: rgba(255, 255, 255, 0.08);
 
-  /* Surfaces. These were written inline as bg-white/[0.03] in four
-     places and bg-black/40 in three more; naming them keeps every panel
-     and field on the same two values. */
+  /* Panel surface, previously written inline as bg-white/[0.03] in four
+     separate places. */
   --surface: rgba(255, 255, 255, 0.03);
-  --surface-hover: rgba(255, 255, 255, 0.06);
-  --field: rgba(0, 0, 0, 0.4);
 }
 
 @theme inline {
@@ -74,8 +71,6 @@
   --color-warm: var(--warm);
   --color-line: var(--line);
   --color-surface: var(--surface);
-  --color-surface-hover: var(--surface-hover);
-  --color-field: var(--field);
   --font-sans: var(--font-inter);
   --font-display: var(--font-display);
 }
