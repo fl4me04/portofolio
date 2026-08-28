@@ -18,23 +18,13 @@ const Card = ({
   </div>
 );
 
-// Written out rather than icon-matched: the old list paired Go, Python
-// and C with whatever lucide icon was closest, which fooled nobody.
-// TODO: confirm the Swift/SwiftUI line and move anything that no longer
-// belongs — I inferred those from the Apple Developer Academy role.
 const stack = {
-  "Currently working in": ["Swift", "SwiftUI", "Xcode"],
+  "Currently working in": ["Swift", "SwiftUI", "UIKit", "Xcode"],
   "Core experience": ["Java", "Laravel / PHP", "TypeScript", "MySQL"],
   Proficient: ["React", "Next.js", "Tailwind CSS", "Python"],
-  Familiar: ["Go", "C / C++", "React Native"],
+  Familiar: ["Go", "C / C++", "React Native", "Firebase"],
 };
 
-/**
- * About is who I am. Where to find me and how to reach me belong to the
- * contact section, so the location card and the social links that used
- * to sit here are gone: they said exactly what Contact says, one screen
- * apart.
- */
 const BentoGrid = () => {
   return (
     <section className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">

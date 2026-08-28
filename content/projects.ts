@@ -33,26 +33,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "BeOkay",
-    year: "TODO",
-    role: "TODO: solo? team of how many? which parts were yours?",
-    status: "live",
-    problem:
-      "TODO: the problem this addresses — what gap in access to mental health support made it worth building?",
-    build:
-      "An online counseling platform connecting users with licensed psychologists for virtual therapy sessions, with booking, session management and a public-facing awareness component.",
-    hardPart:
-      "TODO: the engineering problem that took the longest to solve — session scheduling, data privacy for counseling records, or something else.",
-    tags: ["Laravel", "PHP", "Blade", "MySQL", "Tailwind CSS"],
-    links: {
-      demo: "https://www.beokay.my.id/",
-      repo: "https://github.com/KUCINGOREN8/BeOkay",
-    },
-    image: "/BeOkay.png",
-    imageAlt:
-      "The BeOkay counseling platform homepage, showing the psychologist booking flow.",
-  },
-  {
     title: "Xperimall",
     year: "TODO",
     role: "TODO",
@@ -65,7 +45,8 @@ export const projects: Project[] = [
     tags: ["React Native", "TypeScript", "MySQL"],
     links: { repo: "https://github.com/fl4me04/xperimall" },
     image: "/Xperimall.jpg",
-    imageAlt: "The Xperimall app showing the interactive mall tenant directory.",
+    imageAlt:
+      "The Xperimall app showing the interactive mall tenant directory.",
   },
   {
     title: "JoymarKet",
@@ -84,5 +65,25 @@ export const projects: Project[] = [
     links: { repo: "https://github.com/fl4me04/JoymarKet" },
     image: "/JoyMarket.png",
     imageAlt: "The JoymarKet point-of-sale screen during a transaction.",
+  },
+  {
+    title: "BeOkay",
+    year: "TODO",
+    role: "TODO: solo? team of how many? which parts were yours?",
+    status: "live",
+    problem:
+      "TODO: the problem this addresses — what gap in access to mental health support made it worth building?",
+    build:
+      "An online counseling platform connecting users with licensed psychologists for virtual therapy sessions, with booking, session management and a public-facing awareness component.",
+    hardPart:
+      "TODO: the engineering problem that took the longest to solve — session scheduling, data privacy for counseling records, or something else.",
+    tags: ["Laravel", "PHP", "Blade", "MySQL", "Tailwind CSS"],
+    links: {
+      demo: "https://www.beokay.my.id/",
+      repo: "https://github.com/KUCINGOREN8/BeOkay",
+    },
+    image: "/BeOkay.png",
+    imageAlt:
+      "The BeOkay counseling platform homepage, showing the psychologist booking flow.",
   },
 ];

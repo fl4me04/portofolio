@@ -1,11 +1,3 @@
-/**
- * Everything the site says about you lives here.
- *
- * Rewrite these strings and the whole page changes. Anything marked
- * TODO is a fact I could not write for you — those lines carry the most
- * weight with a reader, so they are worth your time.
- */
-
 export const me = {
   name: "Shem Josh Lowell",
   role: "iOS Developer",
@@ -19,7 +11,7 @@ export const me = {
     timeZone: "Asia/Jakarta",
   },
 
-  email: "fl4mes04@gmail.com",
+  email: "shem04josh@gmail.com",
 
   avatar: "/Profile.jpeg",
   avatarAlt: "Shem Josh Lowell",
@@ -31,36 +23,30 @@ export const me = {
   },
 
   /* --- Hero -------------------------------------------------------- */
+  hook: "I build iOS applications, drawing on a background in full-stack web and desktop engineering.",
 
-  // The opening claim. Specific enough to be worth reading twice.
-  hook: "I build iOS applications at the Apple Developer Academy @ BINUS, drawing on a background in full-stack web and desktop engineering.",
-
-  // A second line for the detail the first sentence had no room for.
   hookSub:
-    "Swift and SwiftUI today; Java, Laravel and TypeScript before that. The through-line is systems that hold up once real people use them.",
+    "Combining iOS development expertise with a full-stack engineering background to build scalable, intuitive, and impactful digital products.",
 
   /* --- About ------------------------------------------------------- */
-
-  // First person, measured. Three short paragraphs is the right length:
-  // long enough to say something, short enough to be read.
   about: [
-    "TODO: how you came to software — the first thing you built that actually worked. Concrete beats sweeping; skip 'passionate about technology since childhood'.",
+    "My journey into software began with building my first applications and seeing an idea turn into something that actually worked. What started with web and desktop development gradually grew into a broader interest in software engineering, eventually leading me to focus on building intuitive and meaningful experiences for iOS.",
     "I am currently an iOS Developer at the Apple Developer Academy @ BINUS in Tangerang, where I design and build applications for Apple platforms alongside a cohort of developers, designers and product thinkers.",
-    "TODO: what you are deliberately getting better at right now. Naming a genuine gap reads as confidence, not weakness — it is the most credible sentence on most portfolios.",
+    "I’m currently focused on deepening my understanding of iOS architecture and writing software that remains clean, scalable, and maintainable as products grow.",
   ],
 
   // A dated list is the clearest signal that a site is maintained.
   now: {
     updated: "August 2026",
     items: [
-      "Developing iOS applications in Swift and SwiftUI at the Apple Developer Academy @ BINUS.",
-      "TODO: the specific project or skill you are focused on this month.",
-      "TODO: one interest outside of engineering. One line is enough, and it keeps the section from reading like a résumé.",
+      "Developing iOS applications in Swift, SwiftUI and UIKit at the Apple Developer Academy @ BINUS.",
+      "Developing a game-based AR application to enhance learning about color sensors.",
+      "Learning how to use artificial intelligence professionally to enhance workflows, solve problems, and build more effective solutions.",
     ],
   },
 
   /* --- Footer ------------------------------------------------------ */
 
   signOff:
-    "Building considered software for Apple platforms and the web.",
+    "Building considered software for Apple platforms.",
 } as const;
