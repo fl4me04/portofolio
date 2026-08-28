@@ -30,7 +30,7 @@ export default function Home() {
           <TypewriterText />
 
           <h1 className="mt-4 font-display text-5xl leading-[1.05] tracking-tight text-ink md:text-7xl">
-            {me.name}
+            I&apos;m {me.name}
             <span className="text-warm">.</span>
           </h1>
           <p className="mt-4 text-sm tracking-wide text-ink-faint">
