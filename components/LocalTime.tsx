@@ -19,9 +19,17 @@ const LocalTime = () => {
         timeZone: me.location.timeZone,
       }).format(new Date());
 
-    setTime(format());
+    // Deferred rather than set synchronously here: the first value has
+    // to come from the client (the server has no way to know the
+    // viewer's clock without risking a hydration mismatch), and setting
+    // state directly in an effect body triggers a cascading render.
+    const first = setTimeout(() => setTime(format()), 0);
     const id = setInterval(() => setTime(format()), 1000 * 15);
-    return () => clearInterval(id);
+
+    return () => {
+      clearTimeout(first);
+      clearInterval(id);
+    };
   }, []);
 
   // null on the server and the first client paint, so the markup matches.

@@ -36,14 +36,16 @@ const TypewriterText = () => {
       return () => clearTimeout(hold);
     }
 
-    if (isDeleting && text === "") {
-      setIsDeleting(false);
-      setIndex((prev) => prev + 1);
-      return;
-    }
-
     const step = setTimeout(
       () => {
+        // Advancing to the next word happens here rather than in the
+        // effect body, so no state is set synchronously during render.
+        if (isDeleting && text === "") {
+          setIsDeleting(false);
+          setIndex((prev) => prev + 1);
+          return;
+        }
+
         setText((prev) =>
           isDeleting ? prev.slice(0, -1) : word.slice(0, prev.length + 1),
         );

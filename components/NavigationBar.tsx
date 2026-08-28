@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { me } from "@/content/me";
+import SectionLink from "./SectionLink";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -38,7 +39,14 @@ export default function Navbar() {
 
       navLinks.forEach((link) => {
         const el = document.getElementById(link.href.replace("#", ""));
-        if (el && marker >= el.offsetTop) current = link.name;
+        if (!el) return;
+
+        // getBoundingClientRect, not offsetTop: offsetTop is measured
+        // against the nearest positioned ancestor, and the contact
+        // section is `relative`, so its marker reported 80 instead of
+        // its real 6655 and won this comparison from the top of the page.
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (marker >= top) current = link.name;
       });
 
       setActiveSection(window.scrollY < 100 ? "Home" : current);
@@ -62,10 +70,10 @@ export default function Navbar() {
 
               return (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
+                  <SectionLink
+                    id={link.href.replace("#", "")}
                     aria-current={isLinkActive ? "true" : undefined}
-                    onClick={() => setActiveSection(link.name)}
+                    onNavigate={() => setActiveSection(link.name)}
                     className={`block rounded-full px-2 py-1.5 text-[13px] transition-colors sm:px-3 sm:text-sm ${
                       isLinkActive
                         ? "text-ink"
@@ -73,7 +81,7 @@ export default function Navbar() {
                     }`}
                   >
                     {link.name}
-                  </Link>
+                  </SectionLink>
                 </li>
               );
             })}

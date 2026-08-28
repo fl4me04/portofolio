@@ -3,7 +3,7 @@ import TypewriterText from "@/components/TypewriterText";
 import BentoGrid from "@/components/BentoGrid";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
-import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import { ArrowDown } from "lucide-react";
 import { me } from "@/content/me";
 
@@ -45,8 +45,8 @@ export default function Home() {
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-            <Link
-              href="#projects"
+            <SectionLink
+              id="projects"
               className="group inline-flex items-center gap-2 self-start rounded-full border border-line px-6 py-3 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
             >
               View selected work
@@ -54,14 +54,14 @@ export default function Home() {
                 size={15}
                 className="transition-transform group-hover:translate-y-0.5"
               />
-            </Link>
+            </SectionLink>
 
-            <Link
-              href="#contact"
+            <SectionLink
+              id="contact"
               className="self-start border-b border-line pb-0.5 text-sm text-ink-muted transition-colors hover:border-accent hover:text-ink"
             >
               Get in touch
-            </Link>
+            </SectionLink>
           </div>
         </section>
 
