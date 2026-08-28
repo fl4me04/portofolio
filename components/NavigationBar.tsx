@@ -59,7 +59,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 h-14 w-full border-b border-line bg-bg/85 backdrop-blur-md">
-      <div className="relative mx-auto flex h-full max-w-6xl items-center justify-center gap-4 px-4 sm:justify-end md:px-8">
+      <div className="relative mx-auto flex h-full max-w-6xl items-center justify-center gap-4 px-6 sm:justify-end md:px-10">
         <nav
           aria-label="Primary"
           className="sm:absolute sm:left-1/2 sm:-translate-x-1/2"

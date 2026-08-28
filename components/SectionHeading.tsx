@@ -13,8 +13,8 @@ const SectionHeading = ({
   title: string;
   intro?: string;
 }) => (
-  <div className="mb-10 md:mb-14">
-    <div className="flex items-center gap-5">
+  <div className="mb-12 md:mb-16">
+    <div className="flex items-center gap-6">
       <h2 className="font-display text-2xl text-ink md:text-3xl">{title}</h2>
       <span className="h-px flex-1 bg-line" />
     </div>

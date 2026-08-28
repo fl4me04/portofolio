@@ -61,7 +61,7 @@ const ProjectCard = ({
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group relative mb-16 grid grid-cols-1 items-center gap-6 last:mb-0 md:mb-24 md:grid-cols-12 md:gap-10"
+      className="group relative mb-24 grid grid-cols-1 items-center gap-8 last:mb-0 md:mb-32 md:grid-cols-12 md:gap-12"
     >
       <div
         className={`relative overflow-hidden rounded-2xl border border-line md:col-span-7 ${
@@ -89,7 +89,7 @@ const ProjectCard = ({
         <h3 className="font-display text-3xl text-ink md:text-4xl">
           {project.title}
         </h3>
-        <p className="mt-1 mb-5 text-sm text-ink-muted">{project.role}</p>
+        <p className="mt-2 mb-6 text-sm text-ink-muted">{project.role}</p>
 
         <div
           className={`w-full rounded-2xl border border-line bg-white/[0.03] p-6 backdrop-blur-md ${
@@ -139,7 +139,7 @@ const ProjectCard = ({
           ))}
         </div>
 
-        <div className={`mt-6 flex gap-5 ${isEven ? "md:ml-auto" : ""}`}>
+        <div className={`mt-6 flex gap-6 ${isEven ? "md:ml-auto" : ""}`}>
           <Link
             href={project.links.repo}
             target="_blank"
@@ -167,7 +167,7 @@ const ProjectCard = ({
 const Projects = () => {
   return (
     <section
-      className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28"
+      className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32"
     >
       <span id="projects" aria-hidden className="block scroll-mt-24" />
       <SectionHeading
@@ -181,7 +181,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <div className="mt-14 flex">
+      <div className="mt-16 flex">
         <Link
           href={me.socials.github}
           target="_blank"

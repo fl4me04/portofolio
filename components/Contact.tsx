@@ -48,12 +48,12 @@ const Contact = () => {
 
   return (
     <section
-      className="relative z-20 mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28"
+      className="relative z-20 mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32"
     >
       <span id="contact" aria-hidden className="block scroll-mt-24" />
       <SectionHeading title="Get in touch" />
 
-      <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
+      <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ const Contact = () => {
           <button
             type="button"
             onClick={handleCopyEmail}
-            className="group mt-8 flex w-full items-center gap-4 rounded-2xl border border-line bg-white/[0.03] p-5 text-left transition-colors hover:border-accent/40"
+            className="group mt-8 flex w-full items-center gap-4 rounded-2xl border border-line bg-white/[0.03] p-6 text-left transition-colors hover:border-accent/40"
           >
             <span className="rounded-full border border-line p-3 text-accent">
               <Mail size={20} />

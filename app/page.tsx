@@ -4,7 +4,7 @@ import BentoGrid from "@/components/BentoGrid";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import SectionLink from "@/components/SectionLink";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { me } from "@/content/me";
 
 export default function Home() {
@@ -25,11 +25,11 @@ export default function Home() {
             visible underneath, which says 'keep scrolling'. */}
         <section
           id="home"
-          className="mx-auto flex min-h-[82vh] w-full max-w-6xl scroll-mt-14 flex-col justify-center px-5 pt-20 pb-20 md:px-8"
+          className="mx-auto flex min-h-[82vh] w-full max-w-6xl scroll-mt-14 flex-col justify-center px-6 py-24 md:px-10 md:py-32"
         >
           <TypewriterText />
 
-          <h1 className="mt-5 font-display text-5xl leading-[1.05] text-ink md:text-7xl">
+          <h1 className="mt-4 font-display text-5xl leading-[1.05] text-ink md:text-7xl">
             {me.name}
             <span className="text-warm">.</span>
           </h1>
@@ -44,10 +44,10 @@ export default function Home() {
             {me.hookSub}
           </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+          <div className="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
             <SectionLink
               id="projects"
-              className="group inline-flex items-center gap-2 self-start rounded-full border border-line px-6 py-3 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+              className="group inline-flex h-12 items-center gap-2 rounded-full border border-line px-6 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
             >
               View selected work
               <ArrowDown
@@ -58,9 +58,10 @@ export default function Home() {
 
             <SectionLink
               id="contact"
-              className="self-start border-b border-line pb-0.5 text-sm text-ink-muted transition-colors hover:border-accent hover:text-ink"
+              className="inline-flex h-12 items-center gap-2 rounded-full border border-transparent px-6 text-sm text-ink-muted transition-colors hover:text-ink"
             >
               Get in touch
+              <ArrowUpRight size={15} className="opacity-60" />
             </SectionLink>
           </div>
         </section>

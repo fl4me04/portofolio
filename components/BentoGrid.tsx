@@ -41,7 +41,7 @@ const socials = [
 const BentoGrid = () => {
   return (
     <section
-      className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28"
+      className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32"
     >
       <span id="about" aria-hidden className="block scroll-mt-24" />
       <SectionHeading title="About" />
@@ -55,7 +55,7 @@ const BentoGrid = () => {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="md:col-span-2"
         >
-          <Card className="flex h-full flex-col justify-center p-7 md:p-10">
+          <Card className="flex h-full flex-col justify-center p-8 md:p-10">
             <div className="space-y-4">
               {me.about.map((paragraph) => (
                 <p
@@ -77,7 +77,7 @@ const BentoGrid = () => {
           transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col gap-4 md:gap-6"
         >
-          <Card className="flex flex-1 flex-col justify-center p-7">
+          <Card className="flex flex-1 flex-col justify-center p-6 md:p-8">
             <p className="mb-2 text-xs tracking-wide text-ink-faint">
               Based in
             </p>
@@ -93,7 +93,7 @@ const BentoGrid = () => {
             </div>
           </Card>
 
-          <Card className="p-7">
+          <Card className="p-6 md:p-8">
             <p className="mb-4 text-xs tracking-wide text-ink-faint">
               Elsewhere
             </p>
@@ -122,8 +122,8 @@ const BentoGrid = () => {
         transition={{ duration: 0.75, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
         className="mt-4 md:mt-6"
       >
-        <Card className="p-7 md:p-10">
-          <div className="mb-5 flex flex-wrap items-baseline gap-3">
+        <Card className="p-6 md:p-8">
+          <div className="mb-6 flex flex-wrap items-baseline gap-3">
             <h3 className="font-display text-2xl text-ink">Currently</h3>
             <span className="text-xs text-ink-faint">
               updated {me.now.updated}
@@ -152,7 +152,7 @@ const BentoGrid = () => {
         className="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-6 lg:grid-cols-4"
       >
         {Object.entries(stack).map(([label, items]) => (
-          <Card key={label} className="p-7">
+          <Card key={label} className="p-6 md:p-8">
             <p className="mb-4 text-xs tracking-wide text-ink-faint">{label}</p>
             <ul className="space-y-2">
               {items.map((item) => (

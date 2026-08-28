@@ -14,8 +14,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative z-20 w-full border-t border-line bg-bg px-4 pt-16 pb-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
+    <footer className="relative z-20 w-full border-t border-line bg-bg pt-20 pb-12">
+      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 md:flex-row md:items-end md:justify-between md:px-10">
         <div>
           <p className="font-display text-2xl text-ink">
             {me.name}
@@ -27,7 +27,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="flex gap-5">
+        <div className="flex gap-6">
           {socialLinks.map(({ icon: Icon, href, label }) => (
             <Link
               key={label}
@@ -42,8 +42,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-line pt-6">
-        <div className="flex flex-col gap-3 text-xs text-ink-faint md:flex-row md:justify-between">
+      <div className="mx-auto mt-16 max-w-6xl px-6 md:px-10">
+        <div className="flex flex-col gap-3 border-t border-line pt-8 text-xs text-ink-faint md:flex-row md:justify-between">
           <p>
             © {currentYear} {me.name}. All rights reserved.
           </p>
