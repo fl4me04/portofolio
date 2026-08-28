@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/NavigationBar";
@@ -7,9 +7,6 @@ import { me } from "@/content/me";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-// A serif for headings. Inter everywhere reads corporate-neutral;
-// pairing it with a warmer display face is the cheapest way to make
-// the page feel written by someone rather than generated.
 const display = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -25,6 +22,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
   },
+};
+
+// Stated explicitly rather than left to the framework default: the
+// theme colour tints the browser chrome on a phone, and no scale limit is
+// set so the page stays pinch-zoomable.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0c0b0a",
 };
 
 export default function RootLayout({

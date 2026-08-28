@@ -1,11 +1,3 @@
-/**
- * One heading treatment for every section.
- *
- * Each section used to open with a large centred title on its own panel,
- * which is what made the page read as a slide deck. A smaller heading
- * with a rule running off to the right is an editorial device instead of
- * a title card: it marks a new part of one continuous document.
- */
 const SectionHeading = ({
   title,
   intro,
@@ -13,15 +5,20 @@ const SectionHeading = ({
   title: string;
   intro?: string;
 }) => (
-  <div className="mb-12 md:mb-16">
-    <div className="flex items-center gap-6">
+  <div className="mb-10 md:mb-16">
+    {/* The rule sits on both sides on a phone, so the heading lands in the
+        middle of the centred column instead of hanging off its left edge. */}
+    <div className="flex items-center gap-4 md:gap-6">
+      <span className="h-px flex-1 bg-line md:hidden" />
       <h2 className="font-display text-2xl leading-tight text-ink md:text-3xl">
         {title}
       </h2>
       <span className="h-px flex-1 bg-line" />
     </div>
     {intro && (
-      <p className="mt-4 max-w-xl leading-relaxed text-ink-muted">{intro}</p>
+      <p className="mx-auto mt-4 max-w-xl text-center leading-relaxed text-ink-muted md:mx-0 md:text-left">
+        {intro}
+      </p>
     )}
   </div>
 );

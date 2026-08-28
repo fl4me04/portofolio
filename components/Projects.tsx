@@ -16,8 +16,6 @@ const statusLabel: Record<Project["status"], string> = {
 
 const ProjectMedia = ({ project }: { project: Project }) => {
   if (!project.image) {
-    // No real screenshot yet. A typographic panel is more honest than
-    // a stock photo, and it doesn't pretend to be the app.
     return (
       <div className="relative flex aspect-video w-full items-center justify-center bg-bg-raised">
         <span className="font-display text-3xl text-ink-faint md:text-5xl">
@@ -54,14 +52,12 @@ const ProjectCard = ({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      // Each card gets its own timing. Identical easing on everything is
-      // what makes a page feel automated.
       transition={{
         duration: 0.65 + index * 0.06,
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group relative mb-24 grid grid-cols-1 items-center gap-8 last:mb-0 md:mb-32 md:grid-cols-12 md:gap-8"
+      className="group relative mb-20 grid grid-cols-1 items-center gap-8 last:mb-0 md:mb-32 md:grid-cols-12 md:gap-8"
     >
       <div
         className={`relative overflow-hidden rounded-2xl border border-line md:col-span-6 ${
@@ -72,12 +68,12 @@ const ProjectCard = ({
       </div>
 
       <div
-        className={`flex flex-col items-start text-left md:col-span-6 ${
+        className={`flex flex-col items-center text-center md:col-span-6 md:items-start md:text-left ${
           isEven ? "md:items-end md:text-right" : ""
         }`}
       >
         <div
-          className={`mb-3 flex items-center gap-3 text-xs tracking-widest text-ink-faint uppercase ${
+          className={`mb-3 flex items-center justify-center gap-3 text-xs tracking-widest text-ink-faint uppercase md:justify-start ${
             isEven ? "md:flex-row-reverse" : ""
           }`}
         >
@@ -92,7 +88,7 @@ const ProjectCard = ({
         <p className="mt-2 mb-6 text-sm text-ink-muted">{project.role}</p>
 
         <div
-          className={`w-full rounded-2xl border border-line bg-surface p-6 backdrop-blur-md ${
+          className={`w-full rounded-2xl border border-line bg-surface p-5 backdrop-blur-md sm:p-6 ${
             isEven ? "md:-ml-8" : "md:-mr-8"
           } z-20 space-y-4`}
         >
@@ -117,7 +113,7 @@ const ProjectCard = ({
         </div>
 
         <div
-          className={`mt-6 flex w-full flex-wrap gap-2 ${
+          className={`mt-6 flex w-full flex-wrap justify-center gap-2 md:justify-start ${
             isEven ? "md:justify-end" : ""
           }`}
         >
@@ -158,9 +154,7 @@ const ProjectCard = ({
 
 const Projects = () => {
   return (
-    <section
-      className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32"
-    >
+    <section className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-32">
       <span id="projects" aria-hidden className="block scroll-mt-24" />
       <SectionHeading
         title="Selected work"
@@ -173,7 +167,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <div className="mt-16 flex">
+      <div className="mt-16 flex justify-center md:justify-start">
         <Link
           href={me.socials.github}
           target="_blank"

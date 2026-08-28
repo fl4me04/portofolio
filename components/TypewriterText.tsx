@@ -54,7 +54,7 @@ const TypewriterText = () => {
 
   if (reduceMotion) {
     return (
-      <p className="flex h-7 items-center text-lg text-ink-muted md:text-xl">
+      <p className="flex h-7 items-center justify-center text-lg text-ink-muted md:justify-start md:text-xl">
         Hello!
       </p>
     );
@@ -62,7 +62,7 @@ const TypewriterText = () => {
 
   return (
     <p
-      className="flex h-7 items-center text-lg text-ink-muted md:text-xl"
+      className="flex h-7 items-center justify-center text-lg text-ink-muted md:justify-start md:text-xl"
       aria-label="Hello!"
     >
       <span aria-hidden>{text}</span>

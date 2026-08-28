@@ -3,10 +3,6 @@
 import Link from "next/link";
 import { scrollToId } from "@/lib/scroll";
 
-/**
- * An in-page link that animates to its section. Falls back to the plain
- * hash link if JavaScript hasn't loaded.
- */
 const SectionLink = ({
   id,
   className,
@@ -25,7 +21,6 @@ const SectionLink = ({
       e.preventDefault();
       onNavigate?.();
       scrollToId(id);
-      // Keep the URL in step so the section stays linkable.
       window.history.replaceState(null, "", `#${id}`);
     }}
     className={className}

@@ -46,6 +46,12 @@ const StarBackground = () => {
     const prefersCalm = () =>
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // Mobile browsers fire resize whenever the URL bar collapses or
+    // reappears, which is a height-only change. Reseeding the field there
+    // would visibly reshuffle the whole sky mid-scroll, so the stars are
+    // only rebuilt when the width actually changes.
+    let lastWidth = -1;
+
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
 
@@ -57,7 +63,10 @@ const StarBackground = () => {
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      initStars(window.innerWidth, window.innerHeight);
+      if (window.innerWidth !== lastWidth || starsRef.current.length === 0) {
+        lastWidth = window.innerWidth;
+        initStars(window.innerWidth, window.innerHeight);
+      }
 
       // With motion reduced there is no rAF loop to repaint the cleared
       // canvas, so the still field has to be redrawn here.
@@ -65,7 +74,10 @@ const StarBackground = () => {
     };
 
     const initStars = (width: number, height: number) => {
-      const numStars = 420;
+      // Density per square pixel rather than a flat count: 420 stars spread
+      // over a desktop reads as sky, but crammed into a phone it reads as
+      // noise — and it is 420 arcs a frame on the weakest hardware.
+      const numStars = Math.round(Math.min(420, (width * height) / 3000));
       const newStars: Star[] = [];
 
       for (let i = 0; i < numStars; i++) {
