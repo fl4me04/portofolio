@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { me } from "@/content/me";
 import {
   motion,
   useScroll,
@@ -87,8 +88,8 @@ export default function Navbar() {
           maxWidth: isOpen ? "500px" : "100%",
           borderRadius: isOpen ? "24px" : isScrolled ? "50px" : "50px",
           backgroundColor: isActive
-            ? "rgba(22, 22, 23, 0.85)"
-            : "rgba(22, 22, 23, 0)",
+            ? "rgba(18, 16, 15, 0.82)"
+            : "rgba(18, 16, 15, 0)",
           border: isActive
             ? "1px solid rgba(255, 255, 255, 0.1)"
             : "1px solid rgba(255, 255, 255, 0.06)",
@@ -107,9 +108,9 @@ export default function Navbar() {
           <motion.div layout className="flex-shrink-0">
             <Link
               href="/"
-              className="text-xl font-bold text-white tracking-tight"
+              className="font-display text-xl tracking-tight text-ink"
             >
-              Portofolio<span className="text-blue-500">.</span>
+              {me.name}<span className="text-warm">.</span>
             </Link>
           </motion.div>
 
@@ -126,8 +127,8 @@ export default function Navbar() {
                     onClick={() => setActiveSection(link.name)}
                     className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                       isLinkActive
-                        ? "bg-white/10 text-white border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] backdrop-blur-xl" // <--- INI STYLE GLASS NYA
-                        : "text-gray-300 hover:text-white hover:bg-white/5"
+                        ? "border border-line bg-white/10 text-ink backdrop-blur-xl"
+                        : "text-ink-muted hover:bg-white/5 hover:text-ink"
                     }`}
                   >
                     {link.name}
@@ -141,7 +142,9 @@ export default function Navbar() {
           <motion.div layout className="flex md:hidden ml-auto flex-shrink-0">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none p-1"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              className="p-1 text-ink-muted transition-colors hover:text-ink focus:outline-none"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -171,8 +174,8 @@ export default function Navbar() {
                     }}
                     className={`w-full text-center py-3 rounded-xl text-base font-medium transition-colors ${
                       isLinkActive
-                        ? "bg-white/10 text-white border border-white/5"
-                        : "text-gray-300 hover:text-white hover:bg-white/10"
+                        ? "border border-line bg-white/10 text-ink"
+                        : "text-ink-muted hover:bg-white/10 hover:text-ink"
                     }`}
                   >
                     {link.name}

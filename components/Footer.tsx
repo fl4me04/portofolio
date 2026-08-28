@@ -1,64 +1,54 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
+import { me } from "@/content/me";
+
+const socialLinks = [
+  { icon: Github, href: me.socials.github, label: "GitHub" },
+  { icon: Linkedin, href: me.socials.linkedin, label: "LinkedIn" },
+  { icon: Instagram, href: me.socials.instagram, label: "Instagram" },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    { icon: Github, href: "https://github.com/fl4me04" },
-    { icon: Linkedin, href: "https://id.linkedin.com/in/shemjl" },
-    { icon: Instagram, href: "https://www.instagram.com/shemjl_/?hl=en" },
-  ];
-
   return (
-    <footer className="w-full bg-black border-t border-white/10 pt-16 pb-8 relative z-20 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-20 bg-blue-500/10 blur-[100px]" />
-
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
-        <div className="text-center md:text-left">
-          <h3 className="text-2xl font-bold text-white mb-2">
-            Fl4me<span className="text-blue-500">.</span>
-          </h3>
-          <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
-            Building digital experiences with code and creativity. Focused on
-            scalability and user-centric design.
+    <footer className="relative z-20 w-full border-t border-line bg-bg px-4 pt-16 pb-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="font-display text-2xl text-ink">
+            {me.name}
+            <span className="text-warm">.</span>
+          </p>
+          <p className="mt-3 max-w-xs leading-relaxed text-ink-muted">
+            {me.signOff}
           </p>
         </div>
 
-        <div className="flex gap-6">
-          {socialLinks.map((social, index) => (
+        <div className="flex gap-5">
+          {socialLinks.map(({ icon: Icon, href, label }) => (
             <Link
-              key={index}
-              href={social.href}
+              key={label}
+              href={href}
               target="_blank"
-              className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-300"
+              aria-label={label}
+              className="text-ink-faint transition-colors hover:text-ink"
             >
-              <social.icon size={20} />
+              <Icon size={20} />
             </Link>
           ))}
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 mt-12 mb-8">
-        <div className="w-full h-px bg-white/5" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-4">
-        <p>
-          © {currentYear}{" "}
-          <span className="text-gray-400 font-medium">Fl4me</span>. All rights
-          reserved.
-        </p>
-        <p className="flex items-center gap-2">
-          Built with
-          <span className="text-gray-400">Next.js</span>
-          <span className="w-1 h-1 rounded-full bg-gray-700" />
-          <span className="text-gray-400">Tailwind</span>
-          <span className="w-1 h-1 rounded-full bg-gray-700" />
-          <span className="text-gray-400">Framer Motion</span>
-        </p>
+      <div className="mx-auto mt-12 max-w-7xl border-t border-line pt-6">
+        <div className="flex flex-col gap-3 text-xs text-ink-faint md:flex-row md:justify-between">
+          <p>
+            © {currentYear} {me.name}. Built by hand, broken and fixed a few
+            times.
+          </p>
+          <p>Next.js, Tailwind, and too much coffee.</p>
+        </div>
       </div>
     </footer>
   );

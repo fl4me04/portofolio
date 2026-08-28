@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------
+   Design tokens.
+   Warm near-black instead of pure #000, warm greys instead of the
+   default cool ones, and a single restrained accent. The old neon
+   blue/purple/pink gradient is gone on purpose: one accent, used
+   rarely, reads as a person's choice rather than a template.
+   --------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0c0b0a;
+  --bg-raised: #141211;
+  --ink: #f4f1ec;
+  --ink-muted: #a6a09a;
+  --ink-faint: #6d6862;
+  --accent: #7ca9dd;
+  --accent-soft: rgba(124, 169, 221, 0.14);
+  --warm: #d9a441;
+  --line: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-warm: var(--warm);
+  --color-line: var(--line);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* Respect people who have asked their OS to calm things down.
+   Framer Motion reads this too, but the canvas starfield and the
+   marquee need the CSS escape hatch. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

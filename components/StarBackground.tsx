@@ -26,6 +26,9 @@ const StarBackground = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const prefersCalm = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
 
@@ -38,25 +41,34 @@ const StarBackground = () => {
       ctx.scale(dpr, dpr);
 
       initStars(window.innerWidth, window.innerHeight);
+
+      // With motion reduced there is no rAF loop to repaint the cleared
+      // canvas, so the still field has to be redrawn here.
+      if (prefersCalm()) drawStars();
     };
 
     const initStars = (width: number, height: number) => {
-      const numStars = 1000;
+      // Was 1000 bright white points drifting at speed, which read as a
+      // screensaver. Fewer, dimmer, warmer and slower turns it back into
+      // atmosphere you stop noticing after a second.
+      const numStars = 320;
 
       const newStars: Star[] = [];
 
       for (let i = 0; i < numStars; i++) {
-        const r = Math.floor(Math.random() * 55 + 200);
-        const g = Math.floor(Math.random() * 55 + 200);
-        const b = Math.floor(Math.random() * 55 + 200);
+        // Warm off-white rather than clinical white, to sit with the
+        // page's warm near-black background.
+        const r = Math.floor(Math.random() * 25 + 225);
+        const g = Math.floor(Math.random() * 25 + 214);
+        const b = Math.floor(Math.random() * 25 + 198);
 
         newStars.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 0.7 + 0.1,
-          dx: (Math.random() - 0.5) * 0.07,
-          dy: (Math.random() - 0.5) * 0.07,
-          alpha: Math.random() * 0.8 + 0.2,
+          radius: Math.random() * 0.6 + 0.15,
+          dx: (Math.random() - 0.5) * 0.025,
+          dy: (Math.random() - 0.5) * 0.025,
+          alpha: Math.random() * 0.35 + 0.06,
           r,
           g,
           b,
@@ -65,7 +77,7 @@ const StarBackground = () => {
       starsRef.current = newStars;
     };
 
-    const draw = () => {
+    const drawStars = (advance = false) => {
       if (!ctx || !canvas) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -76,6 +88,8 @@ const StarBackground = () => {
         ctx.fillStyle = `rgba(${star.r}, ${star.g}, ${star.b}, ${star.alpha})`;
         ctx.fill();
 
+        if (!advance) return;
+
         star.x += star.dx;
         star.y += star.dy;
 
@@ -84,12 +98,21 @@ const StarBackground = () => {
         if (star.y < 0) star.y = window.innerHeight;
         if (star.y > window.innerHeight) star.y = 0;
       });
+    };
 
+    const draw = () => {
+      drawStars(true);
       animationFrameId.current = requestAnimationFrame(draw);
     };
 
     resizeCanvas();
-    draw();
+
+    // Someone who asked their OS for less motion gets a still field.
+    if (prefersCalm()) {
+      drawStars();
+    } else {
+      draw();
+    }
 
     window.addEventListener("resize", resizeCanvas);
 
@@ -104,7 +127,7 @@ const StarBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10 bg-black pointer-events-none"
+      className="pointer-events-none fixed inset-0 -z-10 bg-bg"
     />
   );
 };

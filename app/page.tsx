@@ -1,78 +1,74 @@
 import StarBackground from "@/components/StarBackground";
 import TypewriterText from "@/components/TypewriterText";
 import BentoGrid from "@/components/BentoGrid";
-import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer"; // Jangan lupa import Footer (kalau sudah buat)
+import Link from "next/link";
+import { ArrowDown } from "lucide-react";
+import { me } from "@/content/me";
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center overflow-x-hidden bg-black">
-      {/* Background */}
-      <div className="absolute inset-0 z-0 fixed">
+    <main className="relative flex min-h-screen flex-col overflow-x-hidden bg-bg">
+      <div className="pointer-events-none fixed inset-0 z-0">
         <StarBackground />
       </div>
 
-      {/* --- HERO SECTION --- */}
+      {/* --- HERO ---
+          Left-aligned on purpose. Everything centered is the house style
+          of every generated landing page; text that starts at a margin
+          reads like something a person laid out. */}
       <section
         id="home"
-        className="z-10 flex flex-col items-center text-center max-w-4xl mx-auto pt-32 md:pt-40 pb-20 px-4 min-h-dvh justify-center"
+        className="relative z-10 mx-auto flex min-h-dvh w-full max-w-5xl flex-col justify-center px-5 pt-32 pb-24 md:px-8"
       >
-        <div className="mb-4">
-          <TypewriterText />
-        </div>
+        <TypewriterText />
 
-        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-          I&apos;m{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-            Fl4me
-          </span>
-        </h2>
-
-        <p className="text-gray-400 text-base md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto px-2">
-          Full Stack Engineer specializing in scalable web applications.{" "}
-          <br className="hidden md:block" />I focus on{" "}
-          <span className="text-blue-400 font-medium">performance</span>,{" "}
-          <span className="text-purple-400 font-medium">clean code</span>, and{" "}
-          <span className="text-pink-400 font-medium">user experience</span>.
+        <h1 className="mt-5 font-display text-6xl leading-[1.05] text-ink md:text-8xl">
+          I&apos;m {me.name}
+          <span className="text-warm">.</span>
+        </h1>
+        <p className="mt-3 text-sm tracking-wide text-ink-faint">
+          Most places online, {me.handle}.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-2xl">
+          {me.hook}
+        </p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-ink-faint">
+          {me.hookSub}
+        </p>
+
+        <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
           <Link
             href="#projects"
-            className="group relative px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium transition-all duration-300 hover:shadow-[0_0_25px_rgba(124,58,237,0.6)] hover:scale-105 flex items-center justify-center gap-2 active:scale-95"
+            className="group inline-flex items-center gap-2 self-start rounded-full border border-line px-6 py-3 text-ink transition-colors hover:border-accent hover:text-accent"
           >
-            View Projects
-            <ArrowRight
-              size={18}
-              className="group-hover:translate-x-1 transition-transform"
+            See what I&apos;ve built
+            <ArrowDown
+              size={16}
+              className="transition-transform group-hover:translate-y-0.5"
             />
           </Link>
 
           <Link
             href="#contact"
-            className="px-8 py-3 rounded-full border border-gray-700 text-gray-300 font-medium transition-all duration-300 hover:border-blue-500 hover:text-blue-400 hover:bg-blue-500/10 flex items-center justify-center gap-2"
+            className="self-start border-b border-line pb-0.5 text-ink-muted transition-colors hover:border-accent hover:text-ink"
           >
-            Contact Me
-            <Mail size={18} />
+            or just say hello
           </Link>
         </div>
       </section>
 
-      {/* --- BENTO GRID SECTION --- */}
-      <div className="z-10 w-full bg-gradient-to-b from-transparent via-black/80 to-black border-t border-white/10 backdrop-blur-sm">
+      <div className="relative z-10 w-full border-t border-line bg-bg/85 backdrop-blur-sm">
         <BentoGrid />
       </div>
 
-      {/* --- PROJECTS SECTION --- */}
-      <div className="z-10 w-full bg-black border-t border-white/5">
+      <div className="relative z-10 w-full border-t border-line bg-bg">
         <Projects />
       </div>
 
-      {/* --- CONTACT SECTION --- */}
-      <div className="z-10 w-full bg-gradient-to-b from-black to-black/80 border-t border-white/5">
+      <div className="relative z-10 w-full border-t border-line bg-bg">
         <Contact />
       </div>
     </main>

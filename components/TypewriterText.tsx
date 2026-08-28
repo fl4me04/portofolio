@@ -1,99 +1,77 @@
 "use client";
 
-import { Variants, motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const words = [
-  "Hello!",
-  "Bonjour!",
-  "Halo!",
-  "Hola!",
-  "Guten Tag!",
-  "Ciao!",
-  "Olá!",
-  "你好!",
-  "こんにちは!",
-  "안녕하세요!",
-  "مرحبا!",
-  "नमस्ते!",
+// Kept, but demoted. This used to be the biggest thing on the page at
+// 7xl; a rotating greeting is a nice touch, not a headline.
+const greetings = [
+  "Hello",
+  "Halo",
+  "Hai",
+  "Bonjour",
+  "Hola",
+  "Ciao",
+  "こんにちは",
+  "안녕하세요",
 ];
 
+const TYPE_MS = 70;
+const DELETE_MS = 35;
+const HOLD_MS = 2200;
+
 const TypewriterText = () => {
+  const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const [cursorVariant, setCursorVariant] = useState("blinking");
-
   useEffect(() => {
-    const currentWord = words[index % words.length];
+    if (reduceMotion) return;
 
-    const typeSpeed = 50 + Math.random() * 50;
-    const deleteSpeed = 30;
-    const pauseTime = 1500;
+    const word = greetings[index % greetings.length];
 
-    let timer: NodeJS.Timeout;
+    if (!isDeleting && text === word) {
+      const hold = setTimeout(() => setIsDeleting(true), HOLD_MS);
+      return () => clearTimeout(hold);
+    }
 
-    const handleType = () => {
-      // 1. FASE MENGHAPUS
-      if (isDeleting) {
-        setCursorVariant("typing");
-        setText((prev) => prev.slice(0, -1));
+    if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setIndex((prev) => prev + 1);
+      return;
+    }
 
-        if (text.length === 0) {
-          setIsDeleting(false);
-          setIndex((prev) => prev + 1);
-        }
-      }
-      // 2. FASE MENGETIK
-      else {
-        setCursorVariant("typing");
-        setText((prev) => currentWord.slice(0, prev.length + 1));
-
-        if (text === currentWord) {
-          setCursorVariant("blinking");
-          timer = setTimeout(() => setIsDeleting(true), pauseTime);
-          return;
-        }
-      }
-    };
-
-    timer = setTimeout(handleType, isDeleting ? deleteSpeed : typeSpeed);
-
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, index]);
-
-  const cursorVariants: Variants = {
-    blinking: {
-      opacity: [0, 0, 1, 1],
-      transition: {
-        duration: 0.8,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "linear",
-        times: [0, 0.5, 0.5, 1],
+    const step = setTimeout(
+      () => {
+        setText((prev) =>
+          isDeleting ? prev.slice(0, -1) : word.slice(0, prev.length + 1),
+        );
       },
-    },
-    typing: {
-      opacity: 1,
-      transition: { duration: 0 },
-    },
-  };
+      // A touch of jitter so it types like a person, not a metronome.
+      isDeleting ? DELETE_MS : TYPE_MS + Math.random() * 45,
+    );
+
+    return () => clearTimeout(step);
+  }, [text, isDeleting, index, reduceMotion]);
+
+  if (reduceMotion) {
+    return <p className="text-lg text-ink-muted md:text-xl">Hello —</p>;
+  }
 
   return (
-    <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight flex items-center justify-center min-h-[80px] md:min-h-[100px]">
-      {/* Teks Utama */}
-      <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-        {text}
-      </span>
-
-      {/* Kursor */}
+    <p
+      className="flex items-center text-lg text-ink-muted md:text-xl"
+      aria-label="Hello"
+    >
+      <span aria-hidden>{text}</span>
       <motion.span
-        variants={cursorVariants}
-        animate={cursorVariant}
-        className="inline-block w-[3px] md:w-[5px] h-[1em] ml-1 md:ml-2 bg-blue-500 rounded-full"
+        aria-hidden
+        animate={{ opacity: [1, 1, 0, 0] }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        className="ml-1 inline-block h-[1.1em] w-[2px] bg-warm"
       />
-    </h1>
+    </p>
   );
 };
 

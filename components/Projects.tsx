@@ -3,49 +3,41 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-// import Image from "next/image"; // Aktifkan jika sudah pakai Image Next.js
+import Image from "next/image";
+import { projects, type Project } from "@/content/projects";
+import { me } from "@/content/me";
 
-type Project = {
-  title: string;
-  description: string;
-  tags: string[];
-  links: {
-    demo: string;
-    repo: string;
-  };
-  image: string;
+const statusLabel: Record<Project["status"], string> = {
+  live: "Live",
+  archived: "Archived",
+  "in progress": "In progress",
 };
 
-const projects: Project[] = [
-  {
-    title: "BeOkay Mental Health",
-    description:
-      "Be Okay is an online counseling platform that connects users with licensed psychologists for virtual therapy sessions. The platform promotes mental health awareness and provides accessible counseling services through a user-friendly web interface.",
-    tags: ["Laravel", "Blade", "mySQL", "PHP", "TailwindCSS"],
-    links: {
-      demo: "https://www.beokay.my.id/",
-      repo: "https://github.com/KUCINGOREN8/BeOkay",
-    },
-    image: "/BeOkay.png",
-  },
-  {
-    title: "Xperimall",
-    description:
-      "A comprehensive digital directory app built to streamline the mall experience. Features include an interactive tenant guide, exclusive promo alerts, and a custom activity planner for seamless visit management.",
-    tags: ["React Native", "TypeScript", "MySQL"],
-    links: { demo: "#", repo: "https://github.com/fl4me04/xperimall" },
-    image: "/Xperimall.jpg",
-  },
-  {
-    title: "JoymarKet",
-    description:
-      "A desktop-based retail management system engineered with Java. Implements strict MVC architectural pattern for code modularity. Features include robust transactional logic, persistent data management via MySQL, and secure user session handling.",
-    tags: ["Java", "MVC Pattern", "MySQL", "JDBC", "OOP"],
-    links: { demo: "#", repo: "https://github.com/fl4me04/JoymarKet" },
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop",
-  },
-];
+const ProjectMedia = ({ project }: { project: Project }) => {
+  if (!project.image) {
+    // No real screenshot yet. A typographic panel is more honest than
+    // a stock photo, and it doesn't pretend to be the app.
+    return (
+      <div className="relative flex aspect-video w-full items-center justify-center bg-bg-raised">
+        <span className="font-display text-3xl text-ink-faint md:text-5xl">
+          {project.title}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative aspect-video w-full bg-bg-raised">
+      <Image
+        src={project.image}
+        alt={project.imageAlt ?? project.title}
+        fill
+        sizes="(max-width: 768px) 100vw, 58vw"
+        className="object-cover opacity-85 transition-opacity duration-500 group-hover:opacity-100"
+      />
+    </div>
+  );
+};
 
 const ProjectCard = ({
   project,
@@ -57,84 +49,117 @@ const ProjectCard = ({
   const isEven = index % 2 === 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
+    <motion.article
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center mb-12 md:mb-24 last:mb-0"
+      viewport={{ once: true, margin: "-80px" }}
+      // Each card gets its own timing. Identical easing on everything is
+      // what makes a page feel automated.
+      transition={{
+        duration: 0.65 + index * 0.06,
+        delay: index * 0.05,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="group relative mb-20 grid grid-cols-1 items-center gap-6 last:mb-0 md:mb-32 md:grid-cols-12 md:gap-10"
     >
-      {/* 1. GAMBAR PROJECT */}
       <div
-        className={`md:col-span-7 relative rounded-2xl overflow-hidden border border-white/10 ${
+        className={`relative overflow-hidden rounded-2xl border border-line md:col-span-7 ${
           !isEven ? "md:order-last" : ""
         }`}
       >
-        <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-        <div className="relative aspect-video w-full bg-neutral-900 group-hover:scale-105 transition-transform duration-700 ease-out">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity"
-          />
-        </div>
+        <ProjectMedia project={project} />
       </div>
 
-      {/* 2. DESKRIPSI PROJECT */}
       <div
-        className={`md:col-span-5 flex flex-col items-start text-left ${
-          isEven ? "md:items-end md:text-right" : "md:items-start md:text-left"
+        className={`flex flex-col items-start text-left md:col-span-5 ${
+          isEven ? "md:items-end md:text-right" : ""
         }`}
       >
-        <p className="text-blue-400 text-sm font-medium tracking-wider mb-2">
-          FEATURED PROJECT
-        </p>
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
-          {project.title}
-        </h3>
-
-        {/* Deskripsi Box */}
         <div
-          className={`bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-2xl text-gray-400 text-sm md:text-base leading-relaxed mb-6 shadow-xl w-full ${
-            isEven ? "md:-ml-12 z-20" : "md:-mr-12 z-20"
+          className={`mb-3 flex items-center gap-3 text-xs tracking-wide text-ink-faint ${
+            isEven ? "md:flex-row-reverse" : ""
           }`}
         >
-          {project.description}
+          <span>{project.year}</span>
+          <span className="h-1 w-1 rounded-full bg-ink-faint/60" />
+          <span>{statusLabel[project.status]}</span>
         </div>
 
-        {/* Tech Stack Tags */}
+        <h3 className="font-display text-3xl text-ink md:text-4xl">
+          {project.title}
+        </h3>
+        <p className="mt-1 mb-5 text-sm text-ink-muted">{project.role}</p>
+
         <div
-          className={`flex flex-wrap gap-2 mb-6 w-full justify-start ${
-            isEven ? "md:justify-end" : "md:justify-start"
+          className={`w-full rounded-2xl border border-line bg-white/[0.03] p-6 backdrop-blur-md ${
+            isEven ? "md:-ml-12" : "md:-mr-12"
+          } z-20 space-y-4`}
+        >
+          <p className="text-sm leading-relaxed text-ink-muted md:text-base">
+            {project.problem}
+          </p>
+          <p className="text-sm leading-relaxed text-ink-muted md:text-base">
+            {project.build}
+          </p>
+
+          <div className="border-t border-line pt-4">
+            <p className="mb-1 text-xs tracking-wide text-warm/80">
+              The hard part
+            </p>
+            <p className="text-sm leading-relaxed text-ink-muted">
+              {project.hardPart}
+            </p>
+          </div>
+
+          {project.wouldChange && (
+            <div className="border-t border-line pt-4">
+              <p className="mb-1 text-xs tracking-wide text-warm/80">
+                What I&apos;d do differently
+              </p>
+              <p className="text-sm leading-relaxed text-ink-muted">
+                {project.wouldChange}
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div
+          className={`mt-6 flex w-full flex-wrap gap-2 ${
+            isEven ? "md:justify-end" : ""
           }`}
         >
-          {project.tags.map((tag: string) => (
+          {project.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs font-medium text-gray-300 px-3 py-1 bg-white/5 rounded-full border border-white/5"
+              className="rounded-full border border-line px-3 py-1 text-xs text-ink-muted"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* Links */}
-        <div className="flex gap-4">
+        <div className={`mt-6 flex gap-5 ${isEven ? "md:ml-auto" : ""}`}>
           <Link
             href={project.links.repo}
-            className="text-gray-400 hover:text-white transition-colors"
+            target="_blank"
+            aria-label={`${project.title} source code on GitHub`}
+            className="text-ink-faint transition-colors hover:text-ink"
           >
-            <Github size={22} />
+            <Github size={20} />
           </Link>
-          <Link
-            href={project.links.demo}
-            className="text-gray-400 hover:text-blue-400 transition-colors"
-          >
-            <ExternalLink size={22} />
-          </Link>
+          {project.links.demo && (
+            <Link
+              href={project.links.demo}
+              target="_blank"
+              aria-label={`Visit ${project.title}`}
+              className="text-ink-faint transition-colors hover:text-accent"
+            >
+              <ExternalLink size={20} />
+            </Link>
+          )}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 
@@ -142,44 +167,39 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-12 md:py-32 px-4 max-w-7xl mx-auto scroll-mt-15 md:scroll-mt-0"
+      className="mx-auto max-w-7xl scroll-mt-15 px-4 py-16 md:scroll-mt-0 md:py-32"
     >
-      {/* Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="flex flex-col items-center text-center mb-12 md:mb-20"
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="mb-14 max-w-2xl md:mb-24"
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-          Selected{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            Projects
-          </span>
+        <h2 className="font-display text-4xl text-ink md:text-5xl">
+          Things I&apos;ve built
         </h2>
-        <p className="text-gray-400 max-w-2xl text-lg">
-          A showcase of high-performance web applications and robust system
-          architectures I&apos;ve engineered.
+        <p className="mt-4 leading-relaxed text-ink-muted">
+          Three of them, with the parts that went wrong left in.
         </p>
       </motion.div>
 
-      {/* Projects List */}
       <div className="flex flex-col">
         {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
+          <ProjectCard key={project.title} project={project} index={index} />
         ))}
       </div>
 
-      {/* View All Button */}
-      <div className="flex justify-center mt-12 md:mt-20">
+      <div className="mt-16 flex md:mt-24">
         <Link
-          href="https://github.com/fl4me04"
-          className="group flex items-center gap-2 text-white border-b border-white/20 pb-1 hover:border-blue-400 hover:text-blue-400 transition-all"
+          href={me.socials.github}
+          target="_blank"
+          className="group flex items-center gap-2 border-b border-line pb-1 text-ink transition-colors hover:border-accent hover:text-accent"
         >
-          View Full Project Archive
+          The rest is on GitHub
           <ArrowUpRight
             size={16}
-            className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"
+            className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
           />
         </Link>
       </div>
