@@ -44,9 +44,4 @@ export const me = {
       "Learning how to use artificial intelligence professionally to enhance workflows, solve problems, and build more effective solutions.",
     ],
   },
-
-  /* --- Footer ------------------------------------------------------ */
-
-  signOff:
-    "Building considered software for Apple platforms.",
 } as const;

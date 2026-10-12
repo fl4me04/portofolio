@@ -14,6 +14,28 @@ const statusLabel: Record<Project["status"], string> = {
   "in progress": "In progress",
 };
 
+const AppStoreIcon = ({ size = 24 }: { size?: number }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M13.25 6.75 9 14" />
+    <path d="m10.75 6.75 5 8.75" />
+    <path d="M6.5 14H12" />
+    <path d="M15.25 14h2.25" />
+    <path d="m8 15.75-.5.85" />
+  </svg>
+);
+
 const ProjectMedia = ({ project }: { project: Project }) => {
   if (!project.image) {
     return (
@@ -136,6 +158,16 @@ const ProjectCard = ({
           >
             <Github size={20} />
           </Link>
+          {project.links.appStore && (
+            <Link
+              href={project.links.appStore}
+              target="_blank"
+              aria-label={`${project.title} on the App Store`}
+              className="text-ink-faint transition-colors hover:text-accent"
+            >
+              <AppStoreIcon size={20} />
+            </Link>
+          )}
           {project.links.demo && (
             <Link
               href={project.links.demo}
@@ -158,7 +190,7 @@ const Projects = () => {
       <span id="projects" aria-hidden className="block scroll-mt-24" />
       <SectionHeading
         title="Selected work"
-        intro="Three projects built with small teams — what each one set out to solve, and the part that took me longest to get right."
+        intro="Three of my top projects, each built to solve a real-world problem."
       />
 
       <div className="flex flex-col">
