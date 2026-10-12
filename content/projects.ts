@@ -10,6 +10,7 @@ export type Project = {
   tags: string[];
   links: {
     demo?: string;
+    appStore?: string;
     repo: string;
   };
   image?: string;
@@ -29,7 +30,10 @@ export const projects: Project[] = [
     hardPart:
       "Understanding how augmented reality could be meaningfully implemented in a real-world learning experience and translating those concepts into an interactive AR application.",
     tags: ["Swift", "SwiftUI", "UIKit"],
-    links: { repo: "https://github.com/fl4me04/Martian" },
+    links: {
+      appStore: "https://apps.apple.com/id/app/martian-ar/id6802488875",
+      repo: "https://github.com/fl4me04/Martian",
+    },
     image: "/Martian.png",
     imageAlt: "The Martian's keynote.",
   },
